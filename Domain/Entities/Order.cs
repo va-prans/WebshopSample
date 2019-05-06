@@ -16,8 +16,6 @@ namespace Webshop.Domain.Entities
         public decimal ShippingCost { get; set; }
         public decimal TotalCost { get; set; }
         public string TrackingId { get; set; }
-
-        public int AccountId { get; set; }
         public Account Account { get; set; }
     }
 }

@@ -7,7 +7,7 @@ namespace Webshop.Domain.Entities
 {
     public class Cart
     {
-        public int CardId { get; set; }
+        public int CartId { get; set; }
         public ICollection<CartItem> Items { get; set; }
 
         public int AccountId { get; set; }

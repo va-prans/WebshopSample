@@ -11,8 +11,8 @@ namespace Webshop.Persistence.Infrastructure
     public abstract class DesignTimeDbContextFactoryBase<TContext> :
         IDesignTimeDbContextFactory<TContext> where TContext : DbContext
     {
-        private const string ConnectionStringName = "Content_Connection";
-        private const string AspNetCoreEnvironment = "User_Connection";
+        private const string ConnectionStringName = "Webshop_Content";
+        private const string AspNetCoreEnvironment = "Webshop_User";
 
         public TContext CreateDbContext(string[] args)
         {

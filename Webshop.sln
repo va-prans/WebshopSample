@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28306.52
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Webshop", "Webshop\Webshop.csproj", "{D7A606BE-FD74-4FEB-B6DC-D61DBB63E82B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Webshop", "Webshop\Webshop.csproj", "{D7A606BE-FD74-4FEB-B6DC-D61DBB63E82B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{4134A667-06D9-4495-A8C0-FB64C16E426E}"
 EndProject
@@ -15,13 +15,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{892DF942-6DF9-40B7-97B3-A85DFB27FCC5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Webshop.Application", "Application\Webshop.Application.csproj", "{D97EF1D9-6626-4D93-ADEC-334F7730E18B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Webshop.Application", "Application\Webshop.Application.csproj", "{D97EF1D9-6626-4D93-ADEC-334F7730E18B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Webshop.Domain", "Domain\Webshop.Domain.csproj", "{DB63BD95-F274-43A1-B687-BBBFF29001E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Webshop.Domain", "Domain\Webshop.Domain.csproj", "{DB63BD95-F274-43A1-B687-BBBFF29001E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Webshop.Persistence", "Persistence\Webshop.Persistence.csproj", "{4E97151A-56E5-4BC1-857C-64CBEE12CE1A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Webshop.Persistence", "Persistence\Webshop.Persistence.csproj", "{4E97151A-56E5-4BC1-857C-64CBEE12CE1A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Webshop.Infrastructure", "Webshop.Infrastructure\Webshop.Infrastructure.csproj", "{BB167CDF-16D7-40C4-BAA7-8A87A7D8FE53}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Webshop.Infrastructure", "Infrastructure\Webshop.Infrastructure.csproj", "{8A1C049B-E92A-40F6-9706-BEEAA7D46464}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,10 +45,10 @@ Global
 		{4E97151A-56E5-4BC1-857C-64CBEE12CE1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E97151A-56E5-4BC1-857C-64CBEE12CE1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E97151A-56E5-4BC1-857C-64CBEE12CE1A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BB167CDF-16D7-40C4-BAA7-8A87A7D8FE53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BB167CDF-16D7-40C4-BAA7-8A87A7D8FE53}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BB167CDF-16D7-40C4-BAA7-8A87A7D8FE53}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BB167CDF-16D7-40C4-BAA7-8A87A7D8FE53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A1C049B-E92A-40F6-9706-BEEAA7D46464}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A1C049B-E92A-40F6-9706-BEEAA7D46464}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A1C049B-E92A-40F6-9706-BEEAA7D46464}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A1C049B-E92A-40F6-9706-BEEAA7D46464}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -61,7 +61,7 @@ Global
 		{D97EF1D9-6626-4D93-ADEC-334F7730E18B} = {04AD1D0A-7FDE-4C45-8537-EBB5A222F33F}
 		{DB63BD95-F274-43A1-B687-BBBFF29001E2} = {04AD1D0A-7FDE-4C45-8537-EBB5A222F33F}
 		{4E97151A-56E5-4BC1-857C-64CBEE12CE1A} = {4FD995C3-969B-4375-B1C1-3DF9FDF3EE43}
-		{BB167CDF-16D7-40C4-BAA7-8A87A7D8FE53} = {4FD995C3-969B-4375-B1C1-3DF9FDF3EE43}
+		{8A1C049B-E92A-40F6-9706-BEEAA7D46464} = {4FD995C3-969B-4375-B1C1-3DF9FDF3EE43}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C9157DF8-06DE-4819-A31E-77DC4CE5BBC8}

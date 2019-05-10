@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
+using Webshop.Application.Interfaces;
 using Webshop.Domain.Entities;
 using Webshop.Persistence.Extensions;
 
 namespace Webshop.Persistence
 {
-    public class WebshopContext : DbContext
+    public class WebshopContext : DbContext, IWebshopContext
     {
 
         public WebshopContext(DbContextOptions<WebshopContext> options) : base(options)

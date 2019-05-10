@@ -9,7 +9,18 @@
     <PackageReference Include="FluentValidation.AspNetCore" Version="8.3.0" />
     <PackageReference Include="MediatR" Version="7.0.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.0.0-preview4.19216.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.4" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Account\Commands\Delete\" />
+    <Folder Include="Account\Commands\Update\" />
+    <Folder Include="Account\Queries\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Webshop.Domain.csproj" />
   </ItemGroup>
 
 </Project>

@@ -13,11 +13,16 @@ namespace Webshop.Persistence.Configurations
             builder.HasKey(e => e.AccountId);
             builder.Property(e => e.AccountId).HasColumnName("AccountId");
             builder.Property(e => e.Name)
-                .IsRequired().HasColumnType("ntext");
-            builder.Property(e => e.Name).IsRequired().HasMaxLength(20);
+                .IsRequired()
+                .HasColumnType("ntext")
+                .HasMaxLength(20);             
+            builder.Property(e => e.OwnerId)
+                .IsRequired()
+                .HasColumnType("ntext");
+            
 
             builder.HasOne(x => x.Address)
-                .WithOne(x => x.Account)
+                .WithOne(y => y.Account)
                 .HasForeignKey<Address>(z => z.AddressId);
 
             builder.HasOne(x => x.Cart)

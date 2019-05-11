@@ -14,7 +14,6 @@ namespace Webshop.Domain.Entities
         public int AccountId { get; set; }
         public Account Account { get; set; }
 
-        public int CountryId { get; set; }
         public Country Country { get; set; }
     }
 }

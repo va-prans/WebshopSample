@@ -49,7 +49,7 @@ namespace Webshop.Persistence.Migrations
 
                     b.Property<string>("City");
 
-                    b.Property<int>("CountryId");
+                    b.Property<int?>("CountryId");
 
                     b.Property<string>("PostNumber");
 
@@ -94,9 +94,13 @@ namespace Webshop.Persistence.Migrations
                 {
                     b.Property<int>("CountryId")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("CountryId")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("IsShippable");
+
+                    b.Property<string>("Name")
+                        .IsRequired();
 
                     b.Property<double>("ShippingCost");
 
@@ -256,7 +260,7 @@ namespace Webshop.Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Webshop.Domain.Entities.Country", "Country")
-                        .WithMany()
+                        .WithMany("Addresses")
                         .HasForeignKey("CountryId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

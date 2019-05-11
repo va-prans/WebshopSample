@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Webshop.Persistence.Migrations
 {
-    public partial class stuff : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,7 +14,7 @@ namespace Webshop.Persistence.Migrations
                     AccountId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(type: "ntext", maxLength: 20, nullable: false),
-                    OwnerId = table.Column<string>(nullable: true)
+                    OwnerId = table.Column<string>(type: "ntext", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -27,6 +27,7 @@ namespace Webshop.Persistence.Migrations
                 {
                     CountryId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(nullable: false),
                     Tax = table.Column<double>(nullable: false),
                     ShippingCost = table.Column<double>(nullable: false),
                     IsShippable = table.Column<bool>(nullable: false)
@@ -88,7 +89,7 @@ namespace Webshop.Persistence.Migrations
                     PostNumber = table.Column<string>(nullable: true),
                     City = table.Column<string>(nullable: true),
                     AccountId = table.Column<int>(nullable: false),
-                    CountryId = table.Column<int>(nullable: false)
+                    CountryId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {

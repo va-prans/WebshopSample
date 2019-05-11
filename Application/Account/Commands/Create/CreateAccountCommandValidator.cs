@@ -5,9 +5,9 @@ using FluentValidation;
 
 namespace Webshop.Application.Account.Commands.Create
 {
-    public class CreateUserMetaCommandValidator : AbstractValidator<CreateAccountCommand>
+    public class CreateAccountCommandValidator : AbstractValidator<CreateAccountCommand>
     {
-        public CreateUserMetaCommandValidator()
+        public CreateAccountCommandValidator()
         {
             RuleFor(x => x.OwnerId).NotEmpty();
             RuleFor(x => x.Name).NotEmpty().MaximumLength(20).MinimumLength(1);          

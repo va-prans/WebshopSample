@@ -14,13 +14,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Account\Commands\Delete\" />
-    <Folder Include="Account\Commands\Update\" />
-    <Folder Include="Account\Queries\" />
+    <ProjectReference Include="..\Domain\Webshop.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Domain\Webshop.Domain.csproj" />
+    <Folder Include="Country\" />
   </ItemGroup>
 
 </Project>

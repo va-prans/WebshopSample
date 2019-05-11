@@ -12,7 +12,10 @@ namespace Webshop.Persistence.Configurations
         public void Configure(EntityTypeBuilder<Address> builder)
         {
             builder.HasKey(e => e.AddressId);
-            builder.Property(e => e.AddressId).HasColumnName("AddressId");            
+            builder.Property(e => e.AddressId).HasColumnName("AddressId");
+
+            builder.HasOne(x => x.Country)
+                .WithMany(y => y.Addresses);
         }
     }    
 }

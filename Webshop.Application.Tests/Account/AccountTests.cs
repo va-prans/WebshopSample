@@ -98,7 +98,7 @@ namespace Webshop.Application.Tests.Account
 
             var result1 = await sut1.Handle(new DeleteAccountCommand()
             {
-                AccountId = 1,                
+                AccountId = result.AccountId,                
             }, CancellationToken.None);
             result1.Success.ShouldBe(true);
             _context.Accounts.Find(result1.ResourceId).ShouldBeNull();

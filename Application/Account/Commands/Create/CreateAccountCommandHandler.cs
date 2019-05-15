@@ -20,18 +20,18 @@ namespace Webshop.Application.Account.Commands.Create
         }
 
         public async Task<Domain.Entities.Account> Handle(CreateAccountCommand request, CancellationToken cancellationToken)
-        {
-            var entity = new Domain.Entities.Account
+        {           
+            var entityAddress = new Domain.Entities.Address();
+            var entityCart = new Domain.Entities.Cart();
+            var entity = _context.Accounts.Add(new Domain.Entities.Account
             {
                 OwnerId = request.OwnerId,
-                Name = request.Name,                
-            };
-
-            _context.Accounts.Add(entity);
-
+                Name = request.Name,
+                Cart = entityCart,
+                Address = entityAddress,
+            });
             await _context.SaveChangesAsync(cancellationToken);
-
-            return entity;
+            return entity.Entity;
         }
     }
 }

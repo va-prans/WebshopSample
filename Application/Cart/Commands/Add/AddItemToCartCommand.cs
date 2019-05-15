@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Webshop.Application.Tests.Country
+namespace Webshop.Application.Cart.Commands.Add
 {
-    class CountryTests
+    class AddItemToCartCommand
     {
     }
 }

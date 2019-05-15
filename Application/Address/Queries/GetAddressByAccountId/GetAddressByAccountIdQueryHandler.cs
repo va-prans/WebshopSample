@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Webshop.Application.Address.Queries.GetAddressByAccountId
 {
-    class GetAddressByAccountIdQueryHandler
+    public class GetAddressByAccountIdQueryHandler
     {
     }
 }

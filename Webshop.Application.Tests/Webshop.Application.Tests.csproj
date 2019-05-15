@@ -20,4 +20,9 @@
     <ProjectReference Include="..\Persistence\Webshop.Persistence.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Country\" />
+    <Folder Include="Cart\" />
+  </ItemGroup>
+
 </Project>

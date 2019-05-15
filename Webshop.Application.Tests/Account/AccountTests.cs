@@ -39,7 +39,10 @@ namespace Webshop.Application.Tests.Account
             result.AccountId.ShouldNotBeNull();
             result.Name.ShouldBe("Bob");
             result.OwnerId.ShouldBe("1234");
-            result.Address.ShouldBeNull();
+            result.Address.ShouldNotBeNull();
+            result.Address.City.ShouldBeNull();
+            result.Cart.ShouldNotBeNull();
+            result.Cart.CartItems.ShouldBeNull();
         }
 
         [Fact]

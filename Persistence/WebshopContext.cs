@@ -4,6 +4,7 @@ using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Webshop.Application.Interfaces;
 using Webshop.Domain.Entities;
+using Webshop.Domain.Entities.IntermediaryTables;
 using Webshop.Persistence.Extensions;
 
 namespace Webshop.Persistence
@@ -29,6 +30,10 @@ namespace Webshop.Persistence
         public DbSet<Invoice> Invoices { get; set; }
         public DbSet<Item> Items { get; set; }
         public DbSet<Order> Orders { get; set; }
+
+        public DbSet<CartItem> CartItems { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
+
 
     }
 }

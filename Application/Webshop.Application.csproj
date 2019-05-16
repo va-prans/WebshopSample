@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Cart\Queries\GetCartByAccountId\" />
+    <Folder Include="Cart\Models\" />
     <Folder Include="Country\" />
   </ItemGroup>
 

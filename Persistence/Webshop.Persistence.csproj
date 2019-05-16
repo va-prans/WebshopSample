@@ -8,6 +8,7 @@
   <ItemGroup>
     <Compile Remove="Migrations\20190510190756_requireOwnerId.cs" />
     <Compile Remove="Migrations\20190511181440_AccountAddressCountry.cs" />
+    <Compile Remove="Migrations\20190516183957_Ree.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,10 +23,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Application\Webshop.Application.csproj" />
     <ProjectReference Include="..\Domain\Webshop.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

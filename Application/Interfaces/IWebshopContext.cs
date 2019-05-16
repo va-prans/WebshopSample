@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Webshop.Domain.Entities;
+using Webshop.Domain.Entities.IntermediaryTables;
 
 namespace Webshop.Application.Interfaces
 {
@@ -20,5 +21,8 @@ namespace Webshop.Application.Interfaces
         DbSet<Invoice> Invoices { get; set; }
         DbSet<Item> Items { get; set; }
         DbSet<Order> Orders { get; set; }
+
+        DbSet<CartItem> CartItems { get; set; }
+        DbSet<OrderItem> OrderItems { get; set; }
     }
 }

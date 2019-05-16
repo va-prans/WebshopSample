@@ -35,7 +35,6 @@ namespace Webshop.Application.Tests.Account
             }, CancellationToken.None);
 
             result.ShouldBeOfType<Domain.Entities.Account>();
-
             result.AccountId.ShouldNotBeNull();
             result.Name.ShouldBe("Bob");
             result.OwnerId.ShouldBe("1234");
@@ -67,44 +66,41 @@ namespace Webshop.Application.Tests.Account
         [Fact]
         public async Task UpdateAccountCommandTest()
         {
-            var sut = new CreateAccountCommandHandler(_context);
-
-            var result = await sut.Handle(new CreateAccountCommand()
+            var result = _context.Accounts.Add(new Domain.Entities.Account()
             {
                 Name = "Bob",
                 OwnerId = "1234"
-            }, CancellationToken.None);
-          
-            var sut1 = new UpdateAccountCommandHandler(_context);
+            });
+            await _context.SaveChangesAsync();
 
-            var result1 = await sut1.Handle(new UpdateAccountCommand()
+            var sut = new UpdateAccountCommandHandler(_context);
+            var sutResult = await sut.Handle(new UpdateAccountCommand()
             {
-                AccountId = result.AccountId,
+                AccountId = result.Entity.AccountId,
                 Name = "John"
             }, CancellationToken.None);
 
-            result.Name.ShouldBe("John");
+            sutResult.Name.ShouldBe("John");
         }
 
         [Fact]
         public async Task DeleteAccountCommandTest()
         {
-            var sut = new CreateAccountCommandHandler(_context);
-
-            var result = await sut.Handle(new CreateAccountCommand()
+            var result = _context.Accounts.Add(new Domain.Entities.Account()
             {
                 Name = "Bob",
                 OwnerId = "1234"
-            }, CancellationToken.None);
+            });
+            await _context.SaveChangesAsync();
 
-            var sut1 = new DeleteAccountCommandHandler(_context);
-
-            var result1 = await sut1.Handle(new DeleteAccountCommand()
+            var sut = new DeleteAccountCommandHandler(_context);
+            var sutResult = await sut.Handle(new DeleteAccountCommand()
             {
-                AccountId = result.AccountId,                
+                AccountId = result.Entity.AccountId,                
             }, CancellationToken.None);
-            result1.Success.ShouldBe(true);
-            _context.Accounts.Find(result1.ResourceId).ShouldBeNull();
+
+            sutResult.Success.ShouldBe(true);
+            _context.Accounts.Find(sutResult.ResourceId).ShouldBeNull();
         }
     }
 }

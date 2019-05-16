@@ -12,7 +12,8 @@ namespace Webshop.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<CartItem> builder)
         {
-            builder.HasKey(ci => new {ci.CartFk, ci.ItemFk});
+            builder.HasKey(c => c.CartItemId);
+            //builder.HasKey(ci => new {ci.CartFk, ci.ItemFk});
 
             builder.HasOne(c => c.Cart)
                 .WithMany(ci => ci.CartItems)

@@ -7,17 +7,17 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Webshop.Application.Account.Commands.Update;
 using Webshop.Application.Exceptions;
-using Webshop.Application.Interfaces;
+using Webshop.Persistence;
 
 namespace Webshop.Application.Account.Commands.Update
 {
 
     public class UpdateAccountCommandHandler : IRequestHandler<UpdateAccountCommand, Domain.Entities.Account>
     {
-        private readonly IWebshopContext _context;
+        private readonly WebshopContext _context;
 
         public UpdateAccountCommandHandler(
-            IWebshopContext context)
+            WebshopContext context)
         {
             _context = context;
         }

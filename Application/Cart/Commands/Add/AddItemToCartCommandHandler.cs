@@ -7,17 +7,17 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Webshop.Application.Address.Commands.Create;
 using Webshop.Application.Exceptions;
-using Webshop.Application.Interfaces;
 using Webshop.Domain.Entities.IntermediaryTables;
+using Webshop.Persistence;
 
 namespace Webshop.Application.Cart.Commands.Add
 {
     public class AddItemToCartCommandHandler : IRequestHandler<AddItemToCartCommand, Domain.Entities.Cart>
     {
-        private readonly IWebshopContext _context;
+        private readonly WebshopContext _context;
 
         public AddItemToCartCommandHandler(
-            IWebshopContext context)
+            WebshopContext context)
         {
             _context = context;
         }

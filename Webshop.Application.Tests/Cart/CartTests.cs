@@ -35,7 +35,7 @@ namespace Webshop.Application.Tests.Cart
                 Name = "Bob",
                 Cart = entityCart
             });
-            var entityItem0 = _context.Items.Add(new Item()
+            var entityItem0 = _context.Items.Add(new Domain.Entities.Item()
             {
                 Name = "Ryzen 1800X",
                 Description = "Powerful Central Processing Unit",
@@ -70,7 +70,7 @@ namespace Webshop.Application.Tests.Cart
                 Name = "Bob",
                 Cart = entityCart
             });
-            var entityItem0 = _context.Items.Add(new Item()
+            var entityItem0 = _context.Items.Add(new Domain.Entities.Item()
             {
                 Name = "Ryzen 1800X",
                 Description = "Powerful Central Processing Unit",
@@ -78,7 +78,7 @@ namespace Webshop.Application.Tests.Cart
                 Stock = 200,
                 Volume = 30
             });
-            var entityItem1 = _context.Items.Add(new Item()
+            var entityItem1 = _context.Items.Add(new Domain.Entities.Item()
             {
                 Name = "Nvidia 2080TI",
                 Description = "Powerful Graphics Processing Unit",
@@ -126,7 +126,7 @@ namespace Webshop.Application.Tests.Cart
                 Account = entityAccount.Entity
             });
             await _context.SaveChangesAsync();
-            var entityItem0 = _context.Items.Add(new Item()
+            var entityItem0 = _context.Items.Add(new Domain.Entities.Item()
             {
                 Name = "Ryzen 1800X",
                 Description = "Powerful Central Processing Unit",
@@ -135,7 +135,7 @@ namespace Webshop.Application.Tests.Cart
                 Volume = 30
             });
             await _context.SaveChangesAsync();
-            var entityItem1 = _context.Items.Add(new Item()
+            var entityItem1 = _context.Items.Add(new Domain.Entities.Item()
             {
                 Name = "Nvidia 2080TI",
                 Description = "Powerful Graphics Processing Unit",

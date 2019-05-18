@@ -5,16 +5,16 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Webshop.Application.Common;
-using Webshop.Application.Interfaces;
+using Webshop.Persistence;
 
 namespace Webshop.Application.Account.Commands.Create
 {
     public class CreateAccountCommandHandler : IRequestHandler<CreateAccountCommand, Domain.Entities.Account>
     {
-        private readonly IWebshopContext _context;
+        private readonly WebshopContext _context;
 
         public CreateAccountCommandHandler(
-            IWebshopContext context)
+            WebshopContext context)
         {
             _context = context;
         }

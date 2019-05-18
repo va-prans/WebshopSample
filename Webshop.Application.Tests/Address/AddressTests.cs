@@ -29,7 +29,6 @@ namespace Webshop.Application.Tests.Address
                 Name = "Denmark",
                 ShippingCost = 20,
                 IsShippable = true,
-                Tax = 25
             };
             await _context.Countries.AddAsync(entityCountry);
             await _context.SaveChangesAsync();
@@ -67,7 +66,6 @@ namespace Webshop.Application.Tests.Address
                 Name = "Denmark",
                 ShippingCost = 20,
                 IsShippable = true,
-                Tax = 25
             };
             await _context.Countries.AddAsync(entityCountry);
             await _context.SaveChangesAsync();
@@ -110,14 +108,12 @@ namespace Webshop.Application.Tests.Address
                 Name = "Denmark",
                 ShippingCost = 20,
                 IsShippable = true,
-                Tax = 25
             };
             var entityCountry1 = new Domain.Entities.Country
             {
                 Name = "Sweden",
                 ShippingCost = 20,
                 IsShippable = true,
-                Tax = 25
             };
             await _context.Countries.AddAsync(entityCountry);
             await _context.Countries.AddAsync(entityCountry1);

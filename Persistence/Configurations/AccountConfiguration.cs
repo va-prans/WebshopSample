@@ -30,7 +30,9 @@ namespace Webshop.Persistence.Configurations
                 .HasForeignKey<Cart>(z => z.CartId);
 
 
-            builder.HasMany(x => x.Orders).WithOne(x => x.Account);
+            builder.HasMany(x => x.Orders)
+                .WithOne(x => x.Account)
+                .HasForeignKey(z => z.AccountId);
         }
     }
 }

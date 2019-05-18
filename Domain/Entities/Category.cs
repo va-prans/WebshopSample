@@ -9,6 +9,6 @@ namespace Webshop.Domain.Entities
         public int CategoryId { get; set; }
         public string Name { get; set; }
         public ICollection<Item> Items { get; set; }
-        public Image Image { get; set; }
+        public string Image { get; set; }
     }
 }

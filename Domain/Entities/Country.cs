@@ -8,7 +8,6 @@ namespace Webshop.Domain.Entities
     {
         public int CountryId { get; set; }
         public string Name { get; set; }
-        public double Tax { get; set; }
         public double ShippingCost { get; set; }
         public bool IsShippable { get; set; }
         public ICollection<Address> Addresses { get; set; }

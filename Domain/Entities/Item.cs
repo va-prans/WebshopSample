@@ -14,9 +14,11 @@ namespace Webshop.Domain.Entities
         public decimal Weight { get; set; }
         public decimal Volume { get; set; }
         public int Stock { get; set; }
-        public ICollection<Image> Images { get; set; }
+        public string Image { get; set; }
         public ICollection<CartItem> CartItems { get; set; }
         public ICollection<OrderItem> OrderItems { get; set; }
         public Category Category { get; set; }
+        public int CategoryId { get; set; }
+
     }
 }

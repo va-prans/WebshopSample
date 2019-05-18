@@ -7,16 +7,16 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Webshop.Application.Account.Commands.Update;
 using Webshop.Application.Exceptions;
-using Webshop.Application.Interfaces;
+using Webshop.Persistence;
 
 namespace Webshop.Application.Address.Commands.Update
 {
     public class UpdateAddressCommandHandler : IRequestHandler<UpdateAddressCommand, Domain.Entities.Address>
     {
-        private readonly IWebshopContext _context;
+        private readonly WebshopContext _context;
 
         public UpdateAddressCommandHandler(
-            IWebshopContext context)
+            WebshopContext context)
         {
             _context = context;
         }

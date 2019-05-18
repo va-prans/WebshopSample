@@ -8,16 +8,16 @@ using Microsoft.EntityFrameworkCore;
 using Webshop.Application.Account.Commands.Delete;
 using Webshop.Application.Common;
 using Webshop.Application.Exceptions;
-using Webshop.Application.Interfaces;
+using Webshop.Persistence;
 
 namespace Webshop.Application.Address.Commands.Delete
 {
     public class DeleteAddressCommandHandler : IRequestHandler<DeleteAddressCommand, CommandSuccess>
     {
-        private readonly IWebshopContext _context;
+        private readonly WebshopContext _context;
 
         public DeleteAddressCommandHandler(
-            IWebshopContext context)
+            WebshopContext context)
         {
             _context = context;
         }

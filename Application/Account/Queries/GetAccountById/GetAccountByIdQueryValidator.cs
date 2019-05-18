@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 using FluentValidation;
 using Webshop.Application.Account.Commands.Update;
-using Webshop.Application.Interfaces;
 
 namespace Webshop.Application.Account.Queries.GetAccountById
 {

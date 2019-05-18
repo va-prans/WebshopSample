@@ -7,16 +7,16 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Webshop.Application.Account.Commands.Create;
 using Webshop.Application.Exceptions;
-using Webshop.Application.Interfaces;
+using Webshop.Persistence;
 
 namespace Webshop.Application.Address.Commands.Create
 {
     public class CreateAddressCommandHandler : IRequestHandler<CreateAddressCommand, Domain.Entities.Address>
     {
-        private readonly IWebshopContext _context;
+        private readonly WebshopContext _context;
 
         public CreateAddressCommandHandler(
-            IWebshopContext context)
+            WebshopContext context)
         {
             _context = context;
         }

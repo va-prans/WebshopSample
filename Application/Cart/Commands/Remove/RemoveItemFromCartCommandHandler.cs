@@ -8,17 +8,17 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Webshop.Application.Cart.Commands.Add;
 using Webshop.Application.Exceptions;
-using Webshop.Application.Interfaces;
 using Webshop.Domain.Entities.IntermediaryTables;
+using Webshop.Persistence;
 
 namespace Webshop.Application.Cart.Commands.Remove
 {
     public class RemoveItemFromCartCommandHandler : IRequestHandler<RemoveItemFromCartCommand, Domain.Entities.Cart>
     {
-        private readonly IWebshopContext _context;
+        private readonly WebshopContext _context;
 
         public RemoveItemFromCartCommandHandler(
-            IWebshopContext context)
+            WebshopContext context)
         {
             _context = context;
         }

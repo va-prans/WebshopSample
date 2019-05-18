@@ -12,7 +12,7 @@ namespace Webshop.Persistence.Configurations
         public void Configure(EntityTypeBuilder<Item> builder)
         {
             builder.HasKey(e => e.ItemId);
-            builder.Property(e => e.ItemId).HasColumnName("CartId");
+            builder.Property(e => e.ItemId).HasColumnName("ItemId");
         }
     }
 }

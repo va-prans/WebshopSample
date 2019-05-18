@@ -15,11 +15,15 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Domain\Webshop.Domain.csproj" />
+    <ProjectReference Include="..\Persistence\Webshop.Persistence.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Cart\Models\" />
+    <Folder Include="Category\Commands\" />
     <Folder Include="Country\" />
+    <Folder Include="Interfaces\" />
+    <Folder Include="Item\Commands\" />
   </ItemGroup>
 
 </Project>

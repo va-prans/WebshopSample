@@ -5,16 +5,16 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Webshop.Application.Exceptions;
-using Webshop.Application.Interfaces;
+using Webshop.Persistence;
 
 namespace Webshop.Application.Account.Queries.GetAccountById
 {
     public class GetAccountByIdQueryHandler : IRequestHandler<GetAccountByIdQuery, Domain.Entities.Account>
     {
-        private readonly IWebshopContext _context;
+        private readonly WebshopContext _context;
 
         public GetAccountByIdQueryHandler(
-            IWebshopContext context)
+            WebshopContext context)
         {
             _context = context;
         }

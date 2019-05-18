@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
-using Webshop.Application.Interfaces;
 using Webshop.Domain.Entities;
 using Webshop.Domain.Entities.IntermediaryTables;
 using Webshop.Persistence.Extensions;
 
 namespace Webshop.Persistence
 {
-    public class WebshopContext : DbContext, IWebshopContext
+    public class WebshopContext : DbContext 
     {
 
         public WebshopContext(DbContextOptions<WebshopContext> options) : base(options)
@@ -26,7 +25,6 @@ namespace Webshop.Persistence
         public DbSet<Cart> Carts { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Country> Countries { get; set; }
-        public DbSet<Image> Images { get; set; }
         public DbSet<Invoice> Invoices { get; set; }
         public DbSet<Item> Items { get; set; }
         public DbSet<Order> Orders { get; set; }

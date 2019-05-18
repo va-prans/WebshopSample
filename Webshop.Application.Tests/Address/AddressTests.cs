@@ -36,7 +36,7 @@ namespace Webshop.Application.Tests.Address
             var entityAccount = new Domain.Entities.Account
             {
                 Name = "Bob",
-                OwnerId = "1234"
+                Password = "1234"
             };
             await _context.Accounts.AddAsync(entityAccount);
             await _context.SaveChangesAsync();
@@ -73,7 +73,7 @@ namespace Webshop.Application.Tests.Address
             var entityAccount = new Domain.Entities.Account
             {
                 Name = "Bob",
-                OwnerId = "1234"
+                Password = "1234"
             };
             await _context.Accounts.AddAsync(entityAccount);
             await _context.SaveChangesAsync();
@@ -122,7 +122,7 @@ namespace Webshop.Application.Tests.Address
             var entityAccount = new Domain.Entities.Account
             {
                 Name = "Bob",
-                OwnerId = "1234"
+                Password = "1234"
             };
             await _context.Accounts.AddAsync(entityAccount);
             await _context.SaveChangesAsync();

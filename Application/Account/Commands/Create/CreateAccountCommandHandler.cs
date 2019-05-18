@@ -25,7 +25,7 @@ namespace Webshop.Application.Account.Commands.Create
             var entityCart = new Domain.Entities.Cart();
             var entity = _context.Accounts.Add(new Domain.Entities.Account
             {
-                OwnerId = request.OwnerId,
+                Password = request.Password,
                 Name = request.Name,
                 Cart = entityCart,
                 Address = entityAddress,

@@ -25,7 +25,7 @@ namespace Webshop.Persistence.Infrastructure
         {
 
             var configuration = new ConfigurationBuilder()
-                .SetBasePath(basePath + "\\..\\Webshop")
+                .SetBasePath(basePath + "\\..\\WebshopAPI")
                 .AddJsonFile("appsettings.json")
                 .AddJsonFile($"appsettings.Local.json", optional: true)
                 .AddJsonFile($"appsettings.{environmentName}.json", optional: true)

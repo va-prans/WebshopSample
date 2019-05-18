@@ -9,7 +9,7 @@ namespace Webshop.Application.Account.Commands.Create
     {
         public CreateAccountCommandValidator()
         {
-            RuleFor(x => x.OwnerId).NotEmpty();
+            RuleFor(x => x.Password).NotEmpty();
             RuleFor(x => x.Name).NotEmpty().MaximumLength(20).MinimumLength(1);          
         }
     }

@@ -31,7 +31,7 @@ namespace Webshop.Persistence.Migrations
                         .HasColumnType("ntext")
                         .HasMaxLength(20);
 
-                    b.Property<string>("OwnerId")
+                    b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("ntext");
 
@@ -78,15 +78,14 @@ namespace Webshop.Persistence.Migrations
                 {
                     b.Property<int>("CategoryId")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("CategoryId")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("ImageId");
+                    b.Property<string>("Image");
 
                     b.Property<string>("Name");
 
                     b.HasKey("CategoryId");
-
-                    b.HasIndex("ImageId");
 
                     b.ToTable("Categories");
                 });
@@ -105,39 +104,24 @@ namespace Webshop.Persistence.Migrations
 
                     b.Property<double>("ShippingCost");
 
-                    b.Property<double>("Tax");
-
                     b.HasKey("CountryId");
 
                     b.ToTable("Countries");
                 });
 
-            modelBuilder.Entity("Webshop.Domain.Entities.Image", b =>
+            modelBuilder.Entity("Webshop.Domain.Entities.IntermediaryTables.CartItem", b =>
                 {
-                    b.Property<int>("ImageId")
+                    b.Property<int>("CartItemId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ImageUrl");
-
-                    b.Property<int?>("ItemId");
-
-                    b.HasKey("ImageId");
-
-                    b.HasIndex("ItemId");
-
-                    b.ToTable("Images");
-                });
-
-            modelBuilder.Entity("Webshop.Domain.Entities.IntermediaryTables.CartItem", b =>
-                {
                     b.Property<int>("CartFk");
 
                     b.Property<int>("ItemFk");
 
-                    b.Property<int>("CartItemId");
+                    b.HasKey("CartItemId");
 
-                    b.HasKey("CartFk", "ItemFk");
+                    b.HasIndex("CartFk");
 
                     b.HasIndex("ItemFk");
 
@@ -148,21 +132,18 @@ namespace Webshop.Persistence.Migrations
                 {
                     b.Property<int>("OrderItemId")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("OrderItemId")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("ItemFk");
 
-                    b.Property<int?>("ItemId");
-
                     b.Property<int>("OrderFk");
-
-                    b.Property<int?>("OrderId");
 
                     b.HasKey("OrderItemId");
 
-                    b.HasIndex("ItemId");
+                    b.HasIndex("ItemFk");
 
-                    b.HasIndex("OrderId");
+                    b.HasIndex("OrderFk");
 
                     b.ToTable("OrderItems");
                 });
@@ -171,6 +152,7 @@ namespace Webshop.Persistence.Migrations
                 {
                     b.Property<int>("InvoiceId")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("InvoiceId")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<decimal>("Amount");
@@ -195,12 +177,14 @@ namespace Webshop.Persistence.Migrations
                 {
                     b.Property<int>("ItemId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("CartId")
+                        .HasColumnName("ItemId")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CategoryId");
+                    b.Property<int>("CategoryId");
 
                     b.Property<string>("Description");
+
+                    b.Property<string>("Image");
 
                     b.Property<string>("Name");
 
@@ -223,17 +207,16 @@ namespace Webshop.Persistence.Migrations
                 {
                     b.Property<int>("OrderId")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("CartId")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("AccountId");
+                    b.Property<int>("AccountId");
 
                     b.Property<bool>("IsFinalized");
 
                     b.Property<bool>("IsShipped");
 
                     b.Property<decimal>("ShippingCost");
-
-                    b.Property<decimal>("Tax");
 
                     b.Property<decimal>("TotalCost");
 
@@ -267,20 +250,6 @@ namespace Webshop.Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Webshop.Domain.Entities.Category", b =>
-                {
-                    b.HasOne("Webshop.Domain.Entities.Image", "Image")
-                        .WithMany()
-                        .HasForeignKey("ImageId");
-                });
-
-            modelBuilder.Entity("Webshop.Domain.Entities.Image", b =>
-                {
-                    b.HasOne("Webshop.Domain.Entities.Item")
-                        .WithMany("Images")
-                        .HasForeignKey("ItemId");
-                });
-
             modelBuilder.Entity("Webshop.Domain.Entities.IntermediaryTables.CartItem", b =>
                 {
                     b.HasOne("Webshop.Domain.Entities.Cart", "Cart")
@@ -298,11 +267,13 @@ namespace Webshop.Persistence.Migrations
                 {
                     b.HasOne("Webshop.Domain.Entities.Item", "Item")
                         .WithMany("OrderItems")
-                        .HasForeignKey("ItemId");
+                        .HasForeignKey("ItemFk")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Webshop.Domain.Entities.Order", "Order")
-                        .WithMany("Items")
-                        .HasForeignKey("OrderId");
+                        .WithMany("OrderItems")
+                        .HasForeignKey("OrderFk")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Webshop.Domain.Entities.Invoice", b =>
@@ -317,14 +288,16 @@ namespace Webshop.Persistence.Migrations
                 {
                     b.HasOne("Webshop.Domain.Entities.Category", "Category")
                         .WithMany("Items")
-                        .HasForeignKey("CategoryId");
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Webshop.Domain.Entities.Order", b =>
                 {
                     b.HasOne("Webshop.Domain.Entities.Account", "Account")
                         .WithMany("Orders")
-                        .HasForeignKey("AccountId");
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

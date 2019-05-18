@@ -5,7 +5,7 @@ using FluentValidation;
 
 namespace Webshop.Application.Cart.Commands.Add
 {
-    class AddItemToCartCommandValidator : AbstractValidator<AddItemToCartCommand>
+    public class AddItemToCartCommandValidator : AbstractValidator<AddItemToCartCommand>
     {
         public AddItemToCartCommandValidator()
         {

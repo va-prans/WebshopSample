@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Webshop.Persistence.Migrations
 {
-    public partial class CartOrderItems : Migration
+    public partial class First : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,11 +14,25 @@ namespace Webshop.Persistence.Migrations
                     AccountId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(type: "ntext", maxLength: 20, nullable: false),
-                    OwnerId = table.Column<string>(type: "ntext", nullable: false)
+                    Password = table.Column<string>(type: "ntext", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Accounts", x => x.AccountId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Categories",
+                columns: table => new
+                {
+                    CategoryId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(nullable: true),
+                    Image = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Categories", x => x.CategoryId);
                 });
 
             migrationBuilder.CreateTable(
@@ -28,7 +42,6 @@ namespace Webshop.Persistence.Migrations
                     CountryId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: false),
-                    Tax = table.Column<double>(nullable: false),
                     ShippingCost = table.Column<double>(nullable: false),
                     IsShippable = table.Column<bool>(nullable: false)
                 },
@@ -59,25 +72,50 @@ namespace Webshop.Persistence.Migrations
                 name: "Orders",
                 columns: table => new
                 {
-                    OrderId = table.Column<int>(nullable: false)
+                    CartId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     IsShipped = table.Column<bool>(nullable: false),
                     IsFinalized = table.Column<bool>(nullable: false),
-                    Tax = table.Column<decimal>(nullable: false),
                     ShippingCost = table.Column<decimal>(nullable: false),
                     TotalCost = table.Column<decimal>(nullable: false),
                     TrackingId = table.Column<string>(nullable: true),
-                    AccountId = table.Column<int>(nullable: true)
+                    AccountId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Orders", x => x.OrderId);
+                    table.PrimaryKey("PK_Orders", x => x.CartId);
                     table.ForeignKey(
                         name: "FK_Orders_Accounts_AccountId",
                         column: x => x.AccountId,
                         principalTable: "Accounts",
                         principalColumn: "AccountId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Items",
+                columns: table => new
+                {
+                    ItemId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    Price = table.Column<decimal>(nullable: false),
+                    Weight = table.Column<decimal>(nullable: false),
+                    Volume = table.Column<decimal>(nullable: false),
+                    Stock = table.Column<int>(nullable: false),
+                    Image = table.Column<string>(nullable: true),
+                    CategoryId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Items", x => x.ItemId);
+                    table.ForeignKey(
+                        name: "FK_Items_Categories_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Categories",
+                        principalColumn: "CategoryId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -127,7 +165,7 @@ namespace Webshop.Persistence.Migrations
                         name: "FK_Invoices_Orders_OrderId",
                         column: x => x.OrderId,
                         principalTable: "Orders",
-                        principalColumn: "OrderId",
+                        principalColumn: "CartId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -135,58 +173,26 @@ namespace Webshop.Persistence.Migrations
                 name: "CartItems",
                 columns: table => new
                 {
-                    CartFk = table.Column<int>(nullable: false),
-                    ItemFk = table.Column<int>(nullable: false),
                     CartItemId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    CartFk = table.Column<int>(nullable: false),
+                    ItemFk = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CartItems", x => new { x.CartFk, x.ItemFk });
+                    table.PrimaryKey("PK_CartItems", x => x.CartItemId);
                     table.ForeignKey(
                         name: "FK_CartItems_Carts_CartFk",
                         column: x => x.CartFk,
                         principalTable: "Carts",
                         principalColumn: "CartId",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Items",
-                columns: table => new
-                {
-                    CartId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: true),
-                    Description = table.Column<string>(nullable: true),
-                    Price = table.Column<decimal>(nullable: false),
-                    Weight = table.Column<decimal>(nullable: false),
-                    Volume = table.Column<decimal>(nullable: false),
-                    Stock = table.Column<int>(nullable: false),
-                    CategoryId = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Items", x => x.CartId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Images",
-                columns: table => new
-                {
-                    ImageId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    ImageUrl = table.Column<string>(nullable: true),
-                    ItemId = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Images", x => x.ImageId);
                     table.ForeignKey(
-                        name: "FK_Images_Items_ItemId",
-                        column: x => x.ItemId,
+                        name: "FK_CartItems_Items_ItemFk",
+                        column: x => x.ItemFk,
                         principalTable: "Items",
-                        principalColumn: "CartId",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "ItemId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -195,46 +201,24 @@ namespace Webshop.Persistence.Migrations
                 {
                     OrderItemId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    OrderId = table.Column<int>(nullable: true),
                     OrderFk = table.Column<int>(nullable: false),
-                    ItemId = table.Column<int>(nullable: true),
                     ItemFk = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_OrderItems", x => x.OrderItemId);
                     table.ForeignKey(
-                        name: "FK_OrderItems_Items_ItemId",
-                        column: x => x.ItemId,
+                        name: "FK_OrderItems_Items_ItemFk",
+                        column: x => x.ItemFk,
                         principalTable: "Items",
-                        principalColumn: "CartId",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "ItemId",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_OrderItems_Orders_OrderId",
-                        column: x => x.OrderId,
+                        name: "FK_OrderItems_Orders_OrderFk",
+                        column: x => x.OrderFk,
                         principalTable: "Orders",
-                        principalColumn: "OrderId",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Categories",
-                columns: table => new
-                {
-                    CategoryId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: true),
-                    ImageId = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Categories", x => x.CategoryId);
-                    table.ForeignKey(
-                        name: "FK_Categories_Images_ImageId",
-                        column: x => x.ImageId,
-                        principalTable: "Images",
-                        principalColumn: "ImageId",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "CartId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -243,19 +227,14 @@ namespace Webshop.Persistence.Migrations
                 column: "CountryId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_CartItems_CartFk",
+                table: "CartItems",
+                column: "CartFk");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_CartItems_ItemFk",
                 table: "CartItems",
                 column: "ItemFk");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Categories_ImageId",
-                table: "Categories",
-                column: "ImageId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Images_ItemId",
-                table: "Images",
-                column: "ItemId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Invoices_OrderId",
@@ -269,43 +248,23 @@ namespace Webshop.Persistence.Migrations
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderItems_ItemId",
+                name: "IX_OrderItems_ItemFk",
                 table: "OrderItems",
-                column: "ItemId");
+                column: "ItemFk");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderItems_OrderId",
+                name: "IX_OrderItems_OrderFk",
                 table: "OrderItems",
-                column: "OrderId");
+                column: "OrderFk");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Orders_AccountId",
                 table: "Orders",
                 column: "AccountId");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_CartItems_Items_ItemFk",
-                table: "CartItems",
-                column: "ItemFk",
-                principalTable: "Items",
-                principalColumn: "CartId",
-                onDelete: ReferentialAction.Cascade);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Items_Categories_CategoryId",
-                table: "Items",
-                column: "CategoryId",
-                principalTable: "Categories",
-                principalColumn: "CategoryId",
-                onDelete: ReferentialAction.Restrict);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Images_Items_ItemId",
-                table: "Images");
-
             migrationBuilder.DropTable(
                 name: "Addresses");
 
@@ -325,19 +284,16 @@ namespace Webshop.Persistence.Migrations
                 name: "Carts");
 
             migrationBuilder.DropTable(
-                name: "Orders");
-
-            migrationBuilder.DropTable(
-                name: "Accounts");
-
-            migrationBuilder.DropTable(
                 name: "Items");
+
+            migrationBuilder.DropTable(
+                name: "Orders");
 
             migrationBuilder.DropTable(
                 name: "Categories");
 
             migrationBuilder.DropTable(
-                name: "Images");
+                name: "Accounts");
         }
     }
 }

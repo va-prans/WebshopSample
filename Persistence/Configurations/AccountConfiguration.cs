@@ -16,7 +16,7 @@ namespace Webshop.Persistence.Configurations
                 .IsRequired()
                 .HasColumnType("ntext")
                 .HasMaxLength(20);             
-            builder.Property(e => e.OwnerId)
+            builder.Property(e => e.Password)
                 .IsRequired()
                 .HasColumnType("ntext");
             

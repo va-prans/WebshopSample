@@ -6,7 +6,7 @@ using Webshop.Application.Cart.Commands.Add;
 
 namespace Webshop.Application.Cart.Commands.Remove
 {
-    class RemoveItemFromCartCommandValidator : AbstractValidator<RemoveItemFromCartCommand>
+    public class RemoveItemFromCartCommandValidator : AbstractValidator<RemoveItemFromCartCommand>
     {
         public RemoveItemFromCartCommandValidator()
         {

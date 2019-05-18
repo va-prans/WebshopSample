@@ -10,6 +10,6 @@ namespace Webshop.Application.Account.Commands.Create
     public class CreateAccountCommand : IRequest<Domain.Entities.Account>
     {
         public string Name { get; set; }
-        public string OwnerId { get; set; }
+        public string Password { get; set; }
     }
 }

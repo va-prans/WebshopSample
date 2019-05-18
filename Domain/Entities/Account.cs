@@ -8,8 +8,8 @@ namespace Webshop.Domain.Entities
     {
         public int AccountId { get; set; }
         public string Name { get; set; }
+        public string Password { get; set; }
         public Address Address { get; set; }
-        public string OwnerId { get; set; }
         public Cart Cart { get; set; }
         public ICollection<Order> Orders { get; set; }
     }

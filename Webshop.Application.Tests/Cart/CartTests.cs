@@ -31,7 +31,7 @@ namespace Webshop.Application.Tests.Cart
             var entityCart = new Domain.Entities.Cart();
             var entityAccount = _context.Accounts.Add(new Domain.Entities.Account
             {
-                OwnerId = "1234",
+                Password = "1234",
                 Name = "Bob",
                 Cart = entityCart
             });
@@ -66,7 +66,7 @@ namespace Webshop.Application.Tests.Cart
             var entityCart = new Domain.Entities.Cart();
             var entityAccount = _context.Accounts.Add(new Domain.Entities.Account
             {
-                OwnerId = "1234",
+                Password = "1234",
                 Name = "Bob",
                 Cart = entityCart
             });
@@ -117,7 +117,7 @@ namespace Webshop.Application.Tests.Cart
         {          
             var entityAccount = _context.Accounts.Add(new Domain.Entities.Account
             {
-                OwnerId = "1234",
+                Password = "1234",
                 Name = "Bob",
             });
             await _context.SaveChangesAsync();

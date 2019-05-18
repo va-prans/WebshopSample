@@ -31,13 +31,13 @@ namespace Webshop.Application.Tests.Account
             var result = await sut.Handle(new CreateAccountCommand()
             {
                 Name = "Bob",
-                OwnerId = "1234"
+                Password = "1234"
             }, CancellationToken.None);
 
             result.ShouldBeOfType<Domain.Entities.Account>();
             result.AccountId.ShouldNotBeNull();
             result.Name.ShouldBe("Bob");
-            result.OwnerId.ShouldBe("1234");
+            result.Password.ShouldBe("1234");
             result.Address.ShouldNotBeNull();
             result.Address.City.ShouldBeNull();
             result.Cart.ShouldNotBeNull();
@@ -52,7 +52,7 @@ namespace Webshop.Application.Tests.Account
             var result = await sut.Handle(new CreateAccountCommand()
             {
                 Name = "Bob",
-                OwnerId = "1234"
+                Password = "1234"
             }, CancellationToken.None);
 
             var sut1 = new GetAccountByIdQueryHandler(_context);
@@ -69,7 +69,7 @@ namespace Webshop.Application.Tests.Account
             var result = _context.Accounts.Add(new Domain.Entities.Account()
             {
                 Name = "Bob",
-                OwnerId = "1234"
+                Password = "1234"
             });
             await _context.SaveChangesAsync();
 
@@ -89,7 +89,7 @@ namespace Webshop.Application.Tests.Account
             var result = _context.Accounts.Add(new Domain.Entities.Account()
             {
                 Name = "Bob",
-                OwnerId = "1234"
+                Password = "1234"
             });
             await _context.SaveChangesAsync();
 

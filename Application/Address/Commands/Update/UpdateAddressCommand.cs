@@ -7,7 +7,7 @@ namespace Webshop.Application.Address.Commands.Update
 {
     public class UpdateAddressCommand : IRequest<Domain.Entities.Address>
     {
-        public int AddressId { get; set; }
+        public int AccountId { get; set; }
         public int CountryId { get; set; }
         public string Street { get; set; }
         public string PostNumber { get; set; }

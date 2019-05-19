@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Webshop.Application.Exceptions;
+using Webshop.Domain.Entities.IntermediaryTables;
 using Webshop.Persistence;
 
 namespace Webshop.Application.Order.Commands.Pay
@@ -21,7 +24,19 @@ namespace Webshop.Application.Order.Commands.Pay
 
         public async Task<Domain.Entities.Order> Handle(PayOrderCommand request, CancellationToken cancellationToken)
         {
-            var entityOrder = await _context.Orders.FindAsync(request.OrderId);
+            var entityOrder = await _context.Orders.
+                Where(x => x.OrderId == request.OrderId)
+                .Select(entity => new Domain.Entities.Order
+                {
+                    OrderId = entity.OrderId,
+                    AccountId = entity.AccountId,
+                    Invoice = entity.Invoice,
+                    IsFinalized = entity.IsFinalized,
+                    IsShipped = entity.IsShipped,
+                    OrderItems = entity.OrderItems.Select(y => new OrderItem() { Item = y.Item, ItemFk = y.ItemFk, OrderItemId = y.OrderItemId }).ToList(),
+                    ShippingCost = entity.ShippingCost,
+                    TotalCost = entity.TotalCost
+                }).FirstOrDefaultAsync(cancellationToken);
             if (entityOrder == null)
             {
                 throw new NotFoundException(nameof(Domain.Entities.Order), request.OrderId);
@@ -32,6 +47,7 @@ namespace Webshop.Application.Order.Commands.Pay
                 try
                 {
                     entityOrder.Invoice.IsPaid = true;
+                    entityOrder.TrackingId = "XXXXYYYYY";
                     foreach (var item in entityOrder.OrderItems)
                     {
                         item.Item.Stock--;

@@ -142,7 +142,7 @@ namespace Webshop.Application.Tests.Address
             var sut = new UpdateAddressCommandHandler(_context);
             var result = await sut.Handle(new UpdateAddressCommand()
             {
-                AddressId = entityAddress.AddressId,
+                AccountId = entityAccount.AccountId,
                 CountryId = entityCountry1.CountryId,
                 City = "Malmo",
                 Street = "AliceStreet",

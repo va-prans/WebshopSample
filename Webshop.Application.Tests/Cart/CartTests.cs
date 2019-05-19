@@ -159,11 +159,11 @@ namespace Webshop.Application.Tests.Cart
             }, CancellationToken.None);
 
             sutResult.Result.CartItems.ToList().ShouldNotBeNull();
-            sutResult.Result.CartItems.Count.ShouldBeGreaterThan(0);
-            sutResult.Result.CartItems.Count.ShouldBeLessThan(2);
+            sutResult.Result.CartItems.Count.ShouldBe(1);
             sutResult.Result.CartItems.ToList()[0].Item.Name.ShouldBe("Nvidia 2080TI");
-            sutResult.Result.CartItems.ToList()[0].Item.Price.ShouldBe(3000);           
+            sutResult.Result.CartItems.ToList()[0].Item.Price.ShouldBe(3000);
             _context.Accounts.Find(entityAccount.Entity.AccountId).Cart.CartItems.ToList().ShouldNotBeNull();
+            _context.Accounts.Find(entityAccount.Entity.AccountId).Cart.CartItems.Count.ShouldBe(1);
             _context.Accounts.Find(entityAccount.Entity.AccountId).Cart.CartItems.ToList()[0].Item.Name.ShouldBe("Nvidia 2080TI");
         }
     }

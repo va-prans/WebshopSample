@@ -24,10 +24,10 @@ namespace Webshop.Application.Address.Commands.Update
         public async Task<Domain.Entities.Address> Handle(UpdateAddressCommand request, CancellationToken cancellationToken)
         {
             var entity = await _context.Addresses
-                .SingleOrDefaultAsync(c => c.AddressId == request.AddressId, cancellationToken);
+                .SingleOrDefaultAsync(c => c.AccountId == request.AccountId, cancellationToken);
             if (entity == null)
             {
-                throw new NotFoundException(nameof(Domain.Entities.Address), request.AddressId);
+                throw new NotFoundException(nameof(Domain.Entities.Address), request.AccountId);
             }
             var entityCountry = await _context.Countries
                 .SingleOrDefaultAsync(c => c.CountryId == request.CountryId, cancellationToken);
@@ -41,7 +41,21 @@ namespace Webshop.Application.Address.Commands.Update
             entity.Street = request.Street;
             _context.Addresses.Update(entity);
             await _context.SaveChangesAsync(cancellationToken);
-            return entity;
+            return new Domain.Entities.Address
+            {
+                AccountId = entity.AccountId,
+                AddressId = entity.AddressId,
+                City = entity.City,
+                Street = entity.Street,
+                PostNumber = entity.PostNumber,
+                Country = new Domain.Entities.Country
+                {
+                    CountryId = entity.Country.CountryId,
+                    Name = entity.Country.Name,
+                    IsShippable = entity.Country.IsShippable,
+                    ShippingCost = entity.Country.ShippingCost
+                }             
+            };
         }
     }
 }

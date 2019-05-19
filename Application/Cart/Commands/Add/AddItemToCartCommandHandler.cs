@@ -25,7 +25,10 @@ namespace Webshop.Application.Cart.Commands.Add
         public async Task<Domain.Entities.Cart> Handle(AddItemToCartCommand request, CancellationToken cancellationToken)
         {
             var entityAccount = await _context.Accounts
-                .SingleOrDefaultAsync(c => c.AccountId == request.AccountId, cancellationToken);
+                .Include(x => x.Cart)
+                    .ThenInclude(x => x.CartItems)
+                        .ThenInclude(x => x.Item)
+                .FirstOrDefaultAsync(c => c.AccountId == request.AccountId, cancellationToken);
             if (entityAccount == null)
             {
                 throw new NotFoundException(nameof(Domain.Entities.Account), request.AccountId);
@@ -44,7 +47,17 @@ namespace Webshop.Application.Cart.Commands.Add
                 Item = entityItem
             });
             await _context.SaveChangesAsync(cancellationToken);
-            return entityAccount.Cart;
+            Domain.Entities.Cart cart = new Domain.Entities.Cart
+            {
+                CartId = entityAccount.Cart.CartId,
+                AccountId = entityAccount.AccountId,
+                CartItems = entityAccount.Cart.CartItems
+            };
+            foreach (var cartCartItem in cart.CartItems)
+            {
+                cartCartItem.Cart = null;
+            }
+            return cart;
         }
     }
 }

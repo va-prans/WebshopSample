@@ -9,6 +9,8 @@
     <Compile Remove="Migrations\20190510190756_requireOwnerId.cs" />
     <Compile Remove="Migrations\20190511181440_AccountAddressCountry.cs" />
     <Compile Remove="Migrations\20190516183957_Ree.cs" />
+    <Compile Remove="Migrations\20190519123043_UniqueName.cs" />
+    <Compile Remove="Migrations\20190519123123_UniqueName.cs" />
   </ItemGroup>
 
   <ItemGroup>

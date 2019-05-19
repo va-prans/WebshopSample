@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Shouldly;
 using Webshop.Application.Account.Commands.Create;
 using Webshop.Application.Account.Commands.Delete;
+using Webshop.Application.Account.Commands.Login;
 using Webshop.Application.Account.Commands.Update;
 using Webshop.Application.Account.Queries.GetAccountById;
 using Webshop.Application.Tests.Infrastructure;
@@ -37,7 +38,6 @@ namespace Webshop.Application.Tests.Account
             result.ShouldBeOfType<Domain.Entities.Account>();
             result.AccountId.ShouldNotBeNull();
             result.Name.ShouldBe("Bob");
-            result.Password.ShouldBe("1234");
             result.Address.ShouldNotBeNull();
             result.Address.City.ShouldBeNull();
             result.Cart.ShouldNotBeNull();
@@ -51,7 +51,7 @@ namespace Webshop.Application.Tests.Account
 
             var result = await sut.Handle(new CreateAccountCommand()
             {
-                Name = "Bob",
+                Name = "Bob1",
                 Password = "1234"
             }, CancellationToken.None);
 
@@ -60,7 +60,27 @@ namespace Webshop.Application.Tests.Account
             {
                 AccountId = result.AccountId,               
             }, CancellationToken.None);
-            result1.Name.ShouldBe("Bob");
+            result1.Name.ShouldBe("Bob1");
+        }
+
+        [Fact]
+        public async Task LoginCommandTest_CorrectDetails()
+        {
+            var sut = new CreateAccountCommandHandler(_context);
+
+            var result = await sut.Handle(new CreateAccountCommand()
+            {
+                Name = "Bob2",
+                Password = "1234"
+            }, CancellationToken.None);
+
+            var sut1 = new LoginCommandHandler(_context);
+            var result1 = await sut1.Handle(new LoginCommand()
+            {
+                Name = "Bob2",
+                Password = "1234"
+            }, CancellationToken.None);
+            result1.Name.ShouldBe("Bob2");
         }
 
         [Fact]
@@ -68,7 +88,7 @@ namespace Webshop.Application.Tests.Account
         {
             var result = _context.Accounts.Add(new Domain.Entities.Account()
             {
-                Name = "Bob",
+                Name = "Bob3",
                 Password = "1234"
             });
             await _context.SaveChangesAsync();
@@ -88,7 +108,7 @@ namespace Webshop.Application.Tests.Account
         {
             var result = _context.Accounts.Add(new Domain.Entities.Account()
             {
-                Name = "Bob",
+                Name = "Bob4",
                 Password = "1234"
             });
             await _context.SaveChangesAsync();

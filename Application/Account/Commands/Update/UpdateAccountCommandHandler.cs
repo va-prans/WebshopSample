@@ -33,7 +33,22 @@ namespace Webshop.Application.Account.Commands.Update
             entity.Name = request.Name;
             _context.Accounts.Update(entity);
             await _context.SaveChangesAsync(cancellationToken);
-            return entity;
+            Domain.Entities.Account ac = new Domain.Entities.Account
+            {
+                AccountId = entity.AccountId,
+                Name = entity.Name,
+                Address = entity.Address,
+                Cart = entity.Cart,
+                Orders = entity.Orders,
+            };
+            if(ac.Cart != null) ac.Cart.Account = null;
+            if(ac.Orders != null)
+                foreach (var acOrder in ac.Orders)
+                {
+                    acOrder.Account = null;
+                }
+            if(ac.Address != null) ac.Address.Account = null;
+            return ac;
         }
     }
 

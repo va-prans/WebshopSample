@@ -12,10 +12,11 @@ namespace Webshop.Persistence.Configurations
         {
             builder.HasKey(e => e.AccountId);
             builder.Property(e => e.AccountId).HasColumnName("AccountId");
+            builder.HasIndex(e => e.Name).IsUnique(true);
             builder.Property(e => e.Name)
-                .IsRequired()
-                .HasColumnType("ntext")
-                .HasMaxLength(20);             
+                .IsRequired()              
+                .HasMaxLength(20);
+                             
             builder.Property(e => e.Password)
                 .IsRequired()
                 .HasColumnType("ntext");

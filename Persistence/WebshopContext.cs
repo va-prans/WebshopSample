@@ -18,6 +18,7 @@ namespace Webshop.Persistence
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyAllConfigurations();
+            //modelBuilder.Seed();
         }
 
         public DbSet<Account> Accounts { get; set; }

@@ -96,7 +96,6 @@ namespace Webshop.Application.Tests.Order
             result.Result.Invoice.IsPaid.ShouldBe(false);
             result.Result.TotalCost.ShouldBe(4200);
             result.Result.OrderItems.Count.ShouldBe(2);
-            result.Result.Account.Address.Street.ShouldBe("TigerVej 199, 3th.");
             _context.Accounts.FindAsync(entityAccount.Entity.AccountId).Result.Cart.CartItems.Count.ShouldBe(0);
         }
 

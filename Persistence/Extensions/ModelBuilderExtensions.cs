@@ -33,11 +33,11 @@ namespace Webshop.Persistence.Extensions
             //add items
 
             modelBuilder.Entity<Country>().HasData(
-                new Country {CountryId = 1, Name = "Denmark", IsShippable = true, ShippingCost = 25},
-                new Country {CountryId = 2, Name = "Sweden", IsShippable = true, ShippingCost = 25 },
-                new Country {CountryId = 3, Name = "Germany", IsShippable = true, ShippingCost = 25 },
-                new Country {CountryId = 4, Name = "England", IsShippable = true, ShippingCost = 35 },
-                new Country {CountryId = 5, Name = "France", IsShippable = true, ShippingCost = 55 }
+                new Country { CountryId = 1, Name = "Denmark", IsShippable = true, ShippingCost = 25 },
+                new Country { CountryId = 2, Name = "Sweden", IsShippable = true, ShippingCost = 25 },
+                new Country { CountryId = 3, Name = "Germany", IsShippable = true, ShippingCost = 25 },
+                new Country { CountryId = 4, Name = "England", IsShippable = true, ShippingCost = 35 },
+                new Country { CountryId = 5, Name = "France", IsShippable = true, ShippingCost = 55 }
             );
 
             List<Category> categories = new List<Category>()

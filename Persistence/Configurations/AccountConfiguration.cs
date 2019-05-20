@@ -16,10 +16,10 @@ namespace Webshop.Persistence.Configurations
             builder.Property(e => e.Name)
                 .IsRequired()              
                 .HasMaxLength(20);
-                             
+
             builder.Property(e => e.Password)
-                .IsRequired()
-                .HasColumnType("ntext");
+                .IsRequired();
+       
             
 
             builder.HasOne(x => x.Address)

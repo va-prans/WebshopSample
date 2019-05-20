@@ -8,13 +8,14 @@ using Webshop.Persistence.Extensions;
 
 namespace Webshop.Persistence
 {
-    public class WebshopContext : DbContext 
+    public class WebshopContext : DbContext
     {
 
         public WebshopContext(DbContextOptions<WebshopContext> options) : base(options)
         {
         }
-
+        
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyAllConfigurations();

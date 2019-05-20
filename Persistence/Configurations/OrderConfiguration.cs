@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Webshop.Domain.Entities;
 
 namespace Webshop.Persistence.Configurations
@@ -17,6 +18,10 @@ namespace Webshop.Persistence.Configurations
             builder.HasOne(s => s.Invoice)
                 .WithOne(ad => ad.Order)
                 .HasForeignKey<Invoice>(ad => ad.OrderId);
+
+            builder.Property(r => r.IsShipped).HasConversion(new BoolToZeroOneConverter<Int16>());
+            builder.Property(r => r.IsFinalized).HasConversion(new BoolToZeroOneConverter<Int16>());
+
         }
     }
 }

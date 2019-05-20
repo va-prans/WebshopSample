@@ -17,6 +17,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
+using Swashbuckle.AspNetCore.Swagger;
 using Webshop.Application.Account.Commands.Create;
 using Webshop.Application.Account.Commands.Delete;
 using Webshop.Application.Account.Commands.Update;
@@ -30,8 +31,14 @@ using Webshop.Application.Order.Commands.Create;
 using Webshop.Application.Order.Commands.Pay;
 using Webshop.Application.Order.Queries.GetOrder;
 using Webshop.Application.Order.Queries.GetOrders;
+using Webshop.Domain.Entities;
 using Webshop.Persistence;
-
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore;
+using MySql.Data.EntityFrameworkCore.Extensions;
+using MySql.Data.EntityFrameworkCore;
 namespace WebshopAPI
 {
     public class Startup
@@ -47,7 +54,7 @@ namespace WebshopAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<WebshopContext>(options =>
-                options.UseSqlServer(
+                options.UseMySQL(
                     Configuration.GetConnectionString("Webshop_Content")).EnableSensitiveDataLogging());
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
@@ -56,6 +63,10 @@ namespace WebshopAPI
                 {
                     options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
                 }); 
+                services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "Webshop API", Version = "v1" });
+            });
             //Mediator pipeline
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestPreProcessorBehavior<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestPerformanceBehaviour<,>));
@@ -74,7 +85,6 @@ namespace WebshopAPI
             services.AddTransient<IValidator<GetOrdersQuery>, GetOrdersQueryValidator>();
             services.AddTransient<IValidator<GetOrderQuery>, GetOrderQueryValidator>();
             services.AddMediatR();
-
 
         }
 
@@ -98,6 +108,15 @@ namespace WebshopAPI
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Webshop API V1");
+            });
+
         }
+
+        
     }
 }

@@ -6,7 +6,7 @@ using Webshop.Persistence.Infrastructure;
 
 namespace Webshop.Persistence
 {
-    public class PreppCmsDbContextFactoryBase : DesignTimeDbContextFactoryBase<WebshopContext>
+    public class WebshopDbContextFactoryBase : DesignTimeDbContextFactoryBase<WebshopContext>
     {
         protected override WebshopContext CreateNewInstance(DbContextOptions<WebshopContext> options)
         {

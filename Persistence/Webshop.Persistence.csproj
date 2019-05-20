@@ -11,6 +11,7 @@
     <Compile Remove="Migrations\20190516183957_Ree.cs" />
     <Compile Remove="Migrations\20190519123043_UniqueName.cs" />
     <Compile Remove="Migrations\20190519123123_UniqueName.cs" />
+    <Compile Remove="Migrations\20190520212958_Second.cs" />
   </ItemGroup>
 
   <ItemGroup>

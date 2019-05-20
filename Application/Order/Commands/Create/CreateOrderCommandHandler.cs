@@ -58,8 +58,7 @@ namespace Webshop.Application.Order.Commands.Create
             {
                 throw new NotFoundException(nameof(Domain.Entities.Account), request.AccountId);
             }
-            var entityCart = p.Cart;
-            if (entityCart.CartItems.Count >= 1)
+            if (p.Cart.CartItems.Count >= 1)
             {
                 using (var transaction = _context.Database.BeginTransaction())
                 {
@@ -73,23 +72,30 @@ namespace Webshop.Application.Order.Commands.Create
                             OrderItems = new List<OrderItem>()
                         });
                         _context.SaveChanges();
-                        foreach (var item in entityCart.CartItems)
+                        foreach (var item in p.Cart.CartItems)
                         {
                             order.Entity.OrderItems.Add(new OrderItem()
                             {
-                                Item = item.Item,
-                                Order = order.Entity
+                                ItemFk = item.Item.ItemId,
+
+                                OrderFk = order.Entity.OrderId
                             });
+                            _context.SaveChanges();
                         }
-                        //p.Cart.CartItems = new List<CartItem>();
-                        if (_context.CartItems.Any(x => x.CartFk == p.Cart.CartId))
+
+                        if (_context.CartItems.Count(x => x.CartFk == p.Cart.CartId) > 0)
                         {
-                            _context.CartItems.RemoveRange(entityCart.CartItems);
+                            _context.CartItems.RemoveRange(p.Cart.CartItems);
                         }
 
                         //calc totals
+                        if (p.Address == null)
+                        {
+                            throw new NotFoundException(nameof(Domain.Entities.Address), request.AccountId);
+                        }
                         order.Entity.ShippingCost = (decimal) p.Address.Country.ShippingCost;
-                        order.Entity.TotalCost = order.Entity.OrderItems.Sum(x => x.Item.Price);
+                        
+                        order.Entity.TotalCost = p.Cart.CartItems.Sum(x => x.Item.Price);
                         order.Entity.Invoice = new Invoice()
                         {
                             Amount = order.Entity.ShippingCost + order.Entity.TotalCost,
@@ -97,6 +103,7 @@ namespace Webshop.Application.Order.Commands.Create
                             IsPaid = false,
                             OrderId = order.Entity.OrderId
                         };
+
                         _context.SaveChanges();
                         transaction.Commit();
                         Domain.Entities.Order o = new Domain.Entities.Order()
@@ -116,7 +123,8 @@ namespace Webshop.Application.Order.Commands.Create
                             ShippingCost = order.Entity.ShippingCost,
                             TotalCost = order.Entity.TotalCost,
                             TrackingId = null,
-                            OrderItems = order.Entity.OrderItems.Select(x => new OrderItem() {
+                            OrderItems = p.Cart.CartItems.Select(x => new OrderItem()
+                            {
                                 Item = new Domain.Entities.Item()
                                 {
                                     ItemId = x.Item.ItemId,
@@ -125,7 +133,8 @@ namespace Webshop.Application.Order.Commands.Create
                                     Price = x.Item.Price,
                                     Stock = x.Item.Stock
                                 },
-                                ItemFk = x.ItemFk, OrderItemId = x.OrderItemId}).ToList()
+                                ItemFk = x.ItemFk,                              
+                            }).ToList()
                         };
                         return o;
                     }

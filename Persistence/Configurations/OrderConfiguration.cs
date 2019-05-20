@@ -13,7 +13,7 @@ namespace Webshop.Persistence.Configurations
         public void Configure(EntityTypeBuilder<Order> builder)
         {
             builder.HasKey(e => e.OrderId);
-            builder.Property(e => e.OrderId).HasColumnName("CartId");
+            builder.Property(e => e.OrderId).HasColumnName("OrderId");
 
             builder.HasOne(s => s.Invoice)
                 .WithOne(ad => ad.Order)

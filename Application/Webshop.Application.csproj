@@ -22,7 +22,6 @@
     <Folder Include="Cart\Models\" />
     <Folder Include="Category\Commands\" />
     <Folder Include="Country\Commands\" />
-    <Folder Include="Interfaces\" />
     <Folder Include="Item\Commands\" />
   </ItemGroup>
 

@@ -40,6 +40,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using MySql.Data.EntityFrameworkCore.Extensions;
 using MySql.Data.EntityFrameworkCore;
+using Webshop.Application.Interfaces;
+using Webshop.Infrastructure;
+
 namespace WebshopAPI
 {
     public class Startup
@@ -54,6 +57,8 @@ namespace WebshopAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<IRecommendedCategoryService, RecommendedCategoryService>();
+
             services.AddDbContext<WebshopContext>(options =>
                 options.UseMySQL(
                     Configuration.GetConnectionString("Webshop_Content")).EnableSensitiveDataLogging());

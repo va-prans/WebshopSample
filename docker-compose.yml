@@ -1,0 +1,21 @@
+version: '3.1'
+ 
+services:
+   db:
+     image: mysql
+     command: --default-authentication-plugin=mysql_native_password
+     environment:
+       MYSQL_USER: user
+       MYSQL_PASSWORD: Your_password123
+       MYSQL_ROOT_PASSWORD: secret
+     restart: always
+ 
+   webshopapi:
+     depends_on:
+       - db
+     image: webshopapi
+     build:
+       context: .
+     ports:
+       - "8080:80"
+ 

@@ -1,0 +1,24 @@
+#Depending on the operating system of the host machines(s) that will build or run the containers, the image specified in the FROM statement may need to be changed.
+#For more information, please see https://aka.ms/containercompat
+FROM mcr.microsoft.com/dotnet/core/sdk:2.2 as build-image
+ 
+WORKDIR /home/app
+ 
+COPY . .
+
+RUN dotnet restore
+
+RUN dotnet test ./Webshop.Application.Tests/Webshop.Application.Tests.csproj
+
+RUN dotnet publish ./WebshopAPI/WebshopAPI.csproj -o /publish/
+ 
+FROM mcr.microsoft.com/dotnet/core/aspnet:2.2
+
+WORKDIR /publish
+COPY ./entrypoint.sh ./publish/
+RUN chmod +x ./publish/entrypoint.sh
+CMD /bin/bash ./publish/entrypoint.sh
+
+COPY --from=build-image /publish .
+ 
+ENTRYPOINT ["dotnet", "WebshopAPI.dll"]

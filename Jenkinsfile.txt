@@ -4,5 +4,5 @@ node('docker') {
     stage 'Run Compose Down'
         sh "docker-compose -f docker-compose.yml down"
 	stage 'Run Compose Up'
-        sh "docker-compose -f docker-compose.yml up --force-recreate --abort-on-container-exit"
+        sh "docker-compose -f docker-compose.yml up --build --abort-on-container-exit"
 }

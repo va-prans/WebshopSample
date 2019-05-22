@@ -1,6 +1,9 @@
 node('docker') {
     stage 'Checkout'
         checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/va-prans/WebshopSample']]])   
-	stage 'Run Compose Up'
+	stage 'Build'
+	stage 'Unit Test'
+	stage 'Integration Test'
+	stage 'Run'
         sh "docker-compose -f docker-compose.yml up --build --force-recreate -d"
 }

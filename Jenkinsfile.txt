@@ -1,11 +1,8 @@
 node('docker') {
-
     stage 'Checkout'
-        checkout scm
-    stage 'Build & UnitTest'
-    sh "docker build -t webshopapi:B${BUILD_NUMBER} -f Dockerfile ."
-       
-           
-    stage 'Run Compose'
-        sh "docker-compose up --build --force-recreate --abort-on-container-exit"
+        checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/va-prans/WebshopSample']]])
+    stage 'Run Compose Down'
+        sh "docker-compose -f docker-compose.yml down"
+	stage 'Run Compose Up'
+        sh "docker-compose -f docker-compose.yml up --force-recreate --abort-on-container-exit"
 }

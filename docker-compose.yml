@@ -5,9 +5,9 @@ services:
      image: mysql
      command: --default-authentication-plugin=mysql_native_password
      environment:
-       MYSQL_RANDOM_ROOT_PASSWORD: 1
        MYSQL_USER: user
        MYSQL_PASSWORD: Your_password123
+       MYSQL_ROOT_PASSWORD: secret
      volumes:
        - ./MySQL_Init_Script:/docker-entrypoint-initdb.d/
        - dbdata:/var/lib/mysql

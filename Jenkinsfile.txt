@@ -1,0 +1,11 @@
+node('docker') {
+
+    stage 'Checkout'
+        checkout scm
+    stage 'Build & UnitTest'
+    sh "docker build -t webshopapi:B${BUILD_NUMBER} -f Dockerfile ."
+       
+           
+    stage 'Run Compose'
+        sh "docker-compose up --build --force-recreate --abort-on-container-exit"
+}

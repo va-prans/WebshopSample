@@ -15,10 +15,10 @@ RUN dotnet publish ./WebshopAPI/WebshopAPI.csproj -o /publish/
 FROM mcr.microsoft.com/dotnet/core/aspnet:2.2
 
 WORKDIR /publish
-COPY ./entrypoint.sh ./publish/
-RUN chmod +x ./publish/entrypoint.sh
-CMD /bin/bash ./publish/entrypoint.sh
+
 
 COPY --from=build-image /publish .
- 
-ENTRYPOINT ["dotnet", "WebshopAPI.dll"]
+COPY wait-for.sh wait-for.sh
+RUN chmod +x wait-for.sh
+RUN apt-get -q update && apt-get -qy install netcat
+#ENTRYPOINT ["dotnet", "WebshopAPI.dll"]

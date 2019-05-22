@@ -33,7 +33,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		docker-compose.yml = docker-compose.yml
 		Dockerfile = Dockerfile
-		entrypoint.sh = entrypoint.sh
+		wait-for.sh = wait-for.sh
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MySQL_Init_Script", "MySQL_Init_Script", "{6C0D6033-FFBC-42ED-A26D-70D6C57BDE0B}"
+	ProjectSection(SolutionItems) = preProject
+		MySQL_Init_Script\init.sql = MySQL_Init_Script\init.sql
 	EndProjectSection
 EndProject
 Global
@@ -84,6 +89,7 @@ Global
 		{D185B9CF-C05B-4065-BE04-7A894FD7046B} = {916E1D5E-3D12-4651-B2F7-82A2CA676BFA}
 		{FA0CBE8B-95C2-4114-BDC6-EBB937BAB4E8} = {4FD995C3-969B-4375-B1C1-3DF9FDF3EE43}
 		{3D1CF52B-296B-41A4-8556-70E075A0398E} = {892DF942-6DF9-40B7-97B3-A85DFB27FCC5}
+		{6C0D6033-FFBC-42ED-A26D-70D6C57BDE0B} = {C8D33AF7-5E9D-4AA4-BA10-E1E7CE275BAD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C9157DF8-06DE-4819-A31E-77DC4CE5BBC8}

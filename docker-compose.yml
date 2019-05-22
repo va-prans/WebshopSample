@@ -21,7 +21,7 @@ services:
        context: .
      command: sh -c './wait-for.sh db:3306 -- dotnet WebshopAPI.dll'
      ports:
-       - "8080:80"
+       - "8081:80"
    
 volumes:
    dbdata:

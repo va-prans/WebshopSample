@@ -1,4 +1,4 @@
-pipelineJob('Your App Pipeline') { 
+pipelineJob('webshop') { 
 
   def repo = 'https://github.com/va-prans/WebshopSample.git' 
 

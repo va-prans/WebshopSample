@@ -1,6 +1,6 @@
 FROM jenkins/jenkins:latest
 
-RUN /usr/local/bin/install-plugins.sh git mstest matrix-auth workflow-aggregator docker-workflow blueocean credentials-binding
+RUN /usr/local/bin/install-plugins.sh git mstest matrix-auth workflow-aggregator docker-workflow blueocean credentials-binding job-dsl
 
 ENV JENKINS_USER admin
 ENV JENKINS_PASS admin

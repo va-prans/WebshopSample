@@ -6,12 +6,14 @@ services:
             - '8080:8080'
             - '50000:50000'
         image: jenkins-master
+        build: ./jenkins-docker/master
     jenkins-slave:
         container_name: jenkins-slave
         restart: always
         environment:
             - 'JENKINS_URL=http://jenkins:8080'
         image: jenkins-slave
+        build: ./jenkins-docker/slave
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
         depends_on:

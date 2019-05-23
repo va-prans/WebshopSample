@@ -1,18 +1,14 @@
-job('commit') {
-  description('Build and smoke test')
+job('webshop') {
+  description('webshop CI')
 
   scm {
-    github('martinmosegaard/vigilant-sniffle')
+    github('va-prans/WebshopSample')
   }
  
   publishers {
     downstream('test')
   }
 }
-
-
-
-
 
 buildPipelineView('Pipeline') {
   title('webshop')

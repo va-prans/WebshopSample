@@ -5,5 +5,5 @@ node('docker') {
 	stage 'Unit Test'
 	stage 'Integration Test'
 	stage 'Run'
-        sh "docker-compose -f docker-compose.yml up --build --force-recreate abort-on-container-exit"
+        sh "docker-compose -f docker-compose.yml up --build --force-recreate --abort-on-container-exit"
 }

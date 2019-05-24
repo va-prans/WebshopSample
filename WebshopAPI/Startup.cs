@@ -61,7 +61,9 @@ namespace WebshopAPI
 
             services.AddDbContext<WebshopContext>(options =>
                 options.UseMySQL(
-                    Configuration.GetConnectionString("Webshop_Content")).EnableSensitiveDataLogging());
+                    Configuration.GetConnectionString("Webshop_Content"), 
+                    sqlServerOptions => sqlServerOptions.CommandTimeout(360)).EnableSensitiveDataLogging()                   
+                );
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                 .AddFluentValidation(fv => { })

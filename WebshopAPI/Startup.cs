@@ -32,14 +32,7 @@ using Webshop.Application.Order.Commands.Create;
 using Webshop.Application.Order.Commands.Pay;
 using Webshop.Application.Order.Queries.GetOrder;
 using Webshop.Application.Order.Queries.GetOrders;
-using Webshop.Domain.Entities;
 using Webshop.Persistence;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
-using Microsoft.Extensions.Configuration;
-using Microsoft.EntityFrameworkCore;
-using MySql.Data.EntityFrameworkCore.Extensions;
-using MySql.Data.EntityFrameworkCore;
 using Webshop.Application.Interfaces;
 using Webshop.Infrastructure;
 

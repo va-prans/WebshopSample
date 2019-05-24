@@ -24,4 +24,7 @@ pipelineJob('webshop') {
       } 
     } 
   }
+  if (!jenkins.model.Jenkins.instance.getItemByFullName("webshop")) {
+  queue("webshop")
+  }
 }

@@ -44,7 +44,7 @@ namespace Webshop.API.Tests
             var categories = JsonConvert.DeserializeObject<List<Category>>(responseString);
 
             // Assert
-            Assert.NotEmpty(categories);
+            Assert.Empty(categories);
         }
     }
 }

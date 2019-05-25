@@ -37,7 +37,7 @@ namespace Webshop.Application.Tests.Account
 
             result.ShouldBeOfType<Domain.Entities.Account>();
             result.AccountId.ShouldNotBeNull();
-            result.Name.ShouldBe("Bobs");
+            result.Name.ShouldBe("Bob");
             result.Address.ShouldNotBeNull();
             result.Address.City.ShouldBeNull();
             result.Cart.ShouldNotBeNull();

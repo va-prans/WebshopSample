@@ -3,6 +3,8 @@ version: '3.1'
 services:
   db-test:
     image: mysql
+    networks:
+      - test_network
     build: ./MySQL_Init_Script/
     command: --default-authentication-plugin=mysql_native_password
     environment:
@@ -17,6 +19,8 @@ services:
     depends_on:
       - db-test
     image: "webshopapi:test-B${BUILD_NUMBER}"
+    networks:
+      - test_network
     command: sh -c './wait-for.sh db-test:3306 -- dotnet test --verbosity=normal'
     build:
       context: .

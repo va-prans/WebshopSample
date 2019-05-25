@@ -26,10 +26,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `accounts`
+-- Table structure for table `Accounts`
 --
 
-CREATE TABLE `accounts` (
+CREATE TABLE `Accounts` (
   `AccountId` int(11) NOT NULL,
   `Name` varchar(20) NOT NULL,
   `Password` text NOT NULL
@@ -38,10 +38,10 @@ CREATE TABLE `accounts` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `addresses`
+-- Table structure for table `Addresses`
 --
 
-CREATE TABLE `addresses` (
+CREATE TABLE `Addresses` (
   `AddressId` int(11) NOT NULL,
   `Street` text,
   `PostNumber` text,
@@ -53,10 +53,10 @@ CREATE TABLE `addresses` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cartitems`
+-- Table structure for table `CartItems`
 --
 
-CREATE TABLE `cartitems` (
+CREATE TABLE `CartItems` (
   `CartItemId` int(11) NOT NULL,
   `CartFk` int(11) NOT NULL,
   `ItemFk` int(11) NOT NULL
@@ -65,10 +65,10 @@ CREATE TABLE `cartitems` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `carts`
+-- Table structure for table `Carts`
 --
 
-CREATE TABLE `carts` (
+CREATE TABLE `Carts` (
   `CartId` int(11) NOT NULL,
   `AccountId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -76,20 +76,20 @@ CREATE TABLE `carts` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categories`
+-- Table structure for table `Categories`
 --
 
-CREATE TABLE `categories` (
+CREATE TABLE `Categories` (
   `CategoryId` int(11) NOT NULL,
   `Name` text,
   `Image` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `categories`
+-- Dumping data for table `Categories`
 --
 
-INSERT INTO `categories` (`CategoryId`, `Name`, `Image`) VALUES
+INSERT INTO `Categories` (`CategoryId`, `Name`, `Image`) VALUES
 (1, 'Motherboards', 'https://cdn2.techadvisor.co.uk/cmsdata/features/3683149/the_best_motherboards_by_month_thumb800.jpg'),
 (2, 'RAM', 'https://brain-images-ssl.cdn.dixons.com/9/9/10143299/l_10143299_001.jpg'),
 (3, 'CPUs', 'https://media.wired.com/photos/593220fb2a990b06268a8ede/master/w_1100,c_limit/s-Intel-Core-X-Series-processor-family-21-690x460_2.jpg'),
@@ -114,10 +114,10 @@ INSERT INTO `categories` (`CategoryId`, `Name`, `Image`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `countries`
+-- Table structure for table `Countries`
 --
 
-CREATE TABLE `countries` (
+CREATE TABLE `Countries` (
   `CountryId` int(11) NOT NULL,
   `Name` text NOT NULL,
   `ShippingCost` double NOT NULL,
@@ -125,10 +125,10 @@ CREATE TABLE `countries` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `countries`
+-- Dumping data for table `Countries`
 --
 
-INSERT INTO `countries` (`CountryId`, `Name`, `ShippingCost`, `IsShippable`) VALUES
+INSERT INTO `Countries` (`CountryId`, `Name`, `ShippingCost`, `IsShippable`) VALUES
 (1, 'Denmark', 25, 1),
 (2, 'Sweden', 25, 1),
 (3, 'Germany', 25, 1),
@@ -138,10 +138,10 @@ INSERT INTO `countries` (`CountryId`, `Name`, `ShippingCost`, `IsShippable`) VAL
 -- --------------------------------------------------------
 
 --
--- Table structure for table `invoices`
+-- Table structure for table `Invoices`
 --
 
-CREATE TABLE `invoices` (
+CREATE TABLE `Invoices` (
   `InvoiceId` int(11) NOT NULL,
   `ExInvoiceId` text,
   `Amount` decimal(18,2) NOT NULL,
@@ -153,10 +153,10 @@ CREATE TABLE `invoices` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `items`
+-- Table structure for table `Items`
 --
 
-CREATE TABLE `items` (
+CREATE TABLE `Items` (
   `ItemId` int(11) NOT NULL,
   `Name` text,
   `Description` text,
@@ -169,10 +169,10 @@ CREATE TABLE `items` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `items`
+-- Dumping data for table `Items`
 --
 
-INSERT INTO `items` (`ItemId`, `Name`, `Description`, `Price`, `Weight`, `Volume`, `Stock`, `Image`, `CategoryId`) VALUES
+INSERT INTO `Items` (`ItemId`, `Name`, `Description`, `Price`, `Weight`, `Volume`, `Stock`, `Image`, `CategoryId`) VALUES
 (1, 'Motherboards Item 0', 'This item is one of the best Motherboards around!', '5495.00', '0.00', '0.00', 239, NULL, 1),
 (2, 'Motherboards Item 1', 'This item is one of the best Motherboards around!', '520.00', '0.00', '0.00', 295, NULL, 1),
 (3, 'Motherboards Item 2', 'This item is one of the best Motherboards around!', '5635.00', '0.00', '0.00', 217, NULL, 1),
@@ -637,7 +637,7 @@ INSERT INTO `items` (`ItemId`, `Name`, `Description`, `Price`, `Weight`, `Volume
 (462, 'PSUs Item 21', 'This item is one of the best PSUs around!', '1320.00', '0.00', '0.00', 104, NULL, 8),
 (463, 'PSUs Item 22', 'This item is one of the best PSUs around!', '158.00', '0.00', '0.00', 342, NULL, 8),
 (464, 'PSUs Item 23', 'This item is one of the best PSUs around!', '9349.00', '0.00', '0.00', 354, NULL, 8);
-INSERT INTO `items` (`ItemId`, `Name`, `Description`, `Price`, `Weight`, `Volume`, `Stock`, `Image`, `CategoryId`) VALUES
+INSERT INTO `Items` (`ItemId`, `Name`, `Description`, `Price`, `Weight`, `Volume`, `Stock`, `Image`, `CategoryId`) VALUES
 (465, 'PSUs Item 24', 'This item is one of the best PSUs around!', '1962.00', '0.00', '0.00', 210, NULL, 8),
 (466, 'PSUs Item 25', 'This item is one of the best PSUs around!', '1280.00', '0.00', '0.00', 23, NULL, 8),
 (467, 'PSUs Item 26', 'This item is one of the best PSUs around!', '8168.00', '0.00', '0.00', 269, NULL, 8),
@@ -1042,7 +1042,7 @@ INSERT INTO `items` (`ItemId`, `Name`, `Description`, `Price`, `Weight`, `Volume
 (866, 'GPU Coolers Item 46', 'This item is one of the best GPU Coolers around!', '7563.00', '0.00', '0.00', 238, NULL, 12),
 (867, 'GPU Coolers Item 47', 'This item is one of the best GPU Coolers around!', '622.00', '0.00', '0.00', 38, NULL, 12),
 (868, 'GPU Coolers Item 48', 'This item is one of the best GPU Coolers around!', '2312.00', '0.00', '0.00', 12, NULL, 12);
-INSERT INTO `items` (`ItemId`, `Name`, `Description`, `Price`, `Weight`, `Volume`, `Stock`, `Image`, `CategoryId`) VALUES
+INSERT INTO `Items` (`ItemId`, `Name`, `Description`, `Price`, `Weight`, `Volume`, `Stock`, `Image`, `CategoryId`) VALUES
 (869, 'GPU Coolers Item 49', 'This item is one of the best GPU Coolers around!', '2872.00', '0.00', '0.00', 81, NULL, 12),
 (870, 'GPU Coolers Item 50', 'This item is one of the best GPU Coolers around!', '3557.00', '0.00', '0.00', 398, NULL, 12),
 (871, 'GPU Coolers Item 51', 'This item is one of the best GPU Coolers around!', '499.00', '0.00', '0.00', 321, NULL, 12),
@@ -1489,7 +1489,7 @@ INSERT INTO `items` (`ItemId`, `Name`, `Description`, `Price`, `Weight`, `Volume
 (1312, 'Mice Item 43', 'This item is one of the best Mice around!', '1854.00', '0.00', '0.00', 474, NULL, 16),
 (1313, 'Mice Item 44', 'This item is one of the best Mice around!', '8438.00', '0.00', '0.00', 46, NULL, 16),
 (1314, 'Mice Item 45', 'This item is one of the best Mice around!', '1100.00', '0.00', '0.00', 240, NULL, 16);
-INSERT INTO `items` (`ItemId`, `Name`, `Description`, `Price`, `Weight`, `Volume`, `Stock`, `Image`, `CategoryId`) VALUES
+INSERT INTO `Items` (`ItemId`, `Name`, `Description`, `Price`, `Weight`, `Volume`, `Stock`, `Image`, `CategoryId`) VALUES
 (1315, 'Mice Item 46', 'This item is one of the best Mice around!', '6945.00', '0.00', '0.00', 373, NULL, 16),
 (1316, 'Mice Item 47', 'This item is one of the best Mice around!', '9421.00', '0.00', '0.00', 439, NULL, 16),
 (1317, 'Mice Item 48', 'This item is one of the best Mice around!', '7290.00', '0.00', '0.00', 123, NULL, 16),
@@ -1905,7 +1905,7 @@ INSERT INTO `items` (`ItemId`, `Name`, `Description`, `Price`, `Weight`, `Volume
 (1727, 'De-Dusters Item 99', 'This item is one of the best De-Dusters around!', '3440.00', '0.00', '0.00', 302, NULL, 20),
 (1728, 'De-Dusters Item 100', 'This item is one of the best De-Dusters around!', '715.00', '0.00', '0.00', 378, NULL, 20),
 (1729, 'De-Dusters Item 101', 'This item is one of the best De-Dusters around!', '1388.00', '0.00', '0.00', 470, NULL, 20);
-INSERT INTO `items` (`ItemId`, `Name`, `Description`, `Price`, `Weight`, `Volume`, `Stock`, `Image`, `CategoryId`) VALUES
+INSERT INTO `Items` (`ItemId`, `Name`, `Description`, `Price`, `Weight`, `Volume`, `Stock`, `Image`, `CategoryId`) VALUES
 (1730, 'De-Dusters Item 102', 'This item is one of the best De-Dusters around!', '7652.00', '0.00', '0.00', 27, NULL, 20),
 (1731, 'De-Dusters Item 103', 'This item is one of the best De-Dusters around!', '8301.00', '0.00', '0.00', 75, NULL, 20),
 (1732, 'De-Dusters Item 104', 'This item is one of the best De-Dusters around!', '7210.00', '0.00', '0.00', 176, NULL, 20),
@@ -1915,10 +1915,10 @@ INSERT INTO `items` (`ItemId`, `Name`, `Description`, `Price`, `Weight`, `Volume
 -- --------------------------------------------------------
 
 --
--- Table structure for table `orderitems`
+-- Table structure for table `OrderItems`
 --
 
-CREATE TABLE `orderitems` (
+CREATE TABLE `OrderItems` (
   `OrderItemId` int(11) NOT NULL,
   `OrderFk` int(11) NOT NULL,
   `ItemFk` int(11) NOT NULL
@@ -1927,10 +1927,10 @@ CREATE TABLE `orderitems` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `orders`
+-- Table structure for table `Orders`
 --
 
-CREATE TABLE `orders` (
+CREATE TABLE `Orders` (
   `OrderId` int(11) NOT NULL,
   `IsShipped` smallint(6) NOT NULL,
   `IsFinalized` smallint(6) NOT NULL,
@@ -1963,71 +1963,71 @@ INSERT INTO `__EFMigrationsHistory` (`MigrationId`, `ProductVersion`) VALUES
 --
 
 --
--- Indexes for table `accounts`
+-- Indexes for table `Accounts`
 --
-ALTER TABLE `accounts`
+ALTER TABLE `Accounts`
   ADD PRIMARY KEY (`AccountId`),
   ADD UNIQUE KEY `IX_Accounts_Name` (`Name`);
 
 --
--- Indexes for table `addresses`
+-- Indexes for table `Addresses`
 --
-ALTER TABLE `addresses`
+ALTER TABLE `Addresses`
   ADD PRIMARY KEY (`AddressId`),
   ADD KEY `IX_Addresses_CountryId` (`CountryId`);
 
 --
--- Indexes for table `cartitems`
+-- Indexes for table `CartItems`
 --
-ALTER TABLE `cartitems`
+ALTER TABLE `CartItems`
   ADD PRIMARY KEY (`CartItemId`),
   ADD KEY `IX_CartItems_CartFk` (`CartFk`),
   ADD KEY `IX_CartItems_ItemFk` (`ItemFk`);
 
 --
--- Indexes for table `carts`
+-- Indexes for table `Carts`
 --
-ALTER TABLE `carts`
+ALTER TABLE `Carts`
   ADD PRIMARY KEY (`CartId`);
 
 --
--- Indexes for table `categories`
+-- Indexes for table `Categories`
 --
-ALTER TABLE `categories`
+ALTER TABLE `Categories`
   ADD PRIMARY KEY (`CategoryId`);
 
 --
--- Indexes for table `countries`
+-- Indexes for table `Countries`
 --
-ALTER TABLE `countries`
+ALTER TABLE `Countries`
   ADD PRIMARY KEY (`CountryId`);
 
 --
--- Indexes for table `invoices`
+-- Indexes for table `Invoices`
 --
-ALTER TABLE `invoices`
+ALTER TABLE `Invoices`
   ADD PRIMARY KEY (`InvoiceId`),
   ADD UNIQUE KEY `IX_Invoices_OrderId` (`OrderId`);
 
 --
--- Indexes for table `items`
+-- Indexes for table `Items`
 --
-ALTER TABLE `items`
+ALTER TABLE `Items`
   ADD PRIMARY KEY (`ItemId`),
   ADD KEY `IX_Items_CategoryId` (`CategoryId`);
 
 --
--- Indexes for table `orderitems`
+-- Indexes for table `OrderItems`
 --
-ALTER TABLE `orderitems`
+ALTER TABLE `OrderItems`
   ADD PRIMARY KEY (`OrderItemId`),
   ADD KEY `IX_OrderItems_ItemFk` (`ItemFk`),
   ADD KEY `IX_OrderItems_OrderFk` (`OrderFk`);
 
 --
--- Indexes for table `orders`
+-- Indexes for table `Orders`
 --
-ALTER TABLE `orders`
+ALTER TABLE `Orders`
   ADD PRIMARY KEY (`OrderId`),
   ADD KEY `IX_Orders_AccountId` (`AccountId`);
 
@@ -2042,51 +2042,51 @@ ALTER TABLE `__EFMigrationsHistory`
 --
 
 --
--- AUTO_INCREMENT for table `accounts`
+-- AUTO_INCREMENT for table `Accounts`
 --
-ALTER TABLE `accounts`
+ALTER TABLE `Accounts`
   MODIFY `AccountId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `cartitems`
+-- AUTO_INCREMENT for table `CartItems`
 --
-ALTER TABLE `cartitems`
+ALTER TABLE `CartItems`
   MODIFY `CartItemId` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `categories`
+-- AUTO_INCREMENT for table `Categories`
 --
-ALTER TABLE `categories`
+ALTER TABLE `Categories`
   MODIFY `CategoryId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT for table `countries`
+-- AUTO_INCREMENT for table `Countries`
 --
-ALTER TABLE `countries`
+ALTER TABLE `Countries`
   MODIFY `CountryId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `invoices`
+-- AUTO_INCREMENT for table `Invoices`
 --
-ALTER TABLE `invoices`
+ALTER TABLE `Invoices`
   MODIFY `InvoiceId` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `items`
+-- AUTO_INCREMENT for table `Items`
 --
-ALTER TABLE `items`
+ALTER TABLE `Items`
   MODIFY `ItemId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1735;
 
 --
--- AUTO_INCREMENT for table `orderitems`
+-- AUTO_INCREMENT for table `OrderItems`
 --
-ALTER TABLE `orderitems`
+ALTER TABLE `OrderItems`
   MODIFY `OrderItemId` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `orders`
+-- AUTO_INCREMENT for table `Orders`
 --
-ALTER TABLE `orders`
+ALTER TABLE `Orders`
   MODIFY `OrderId` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -2094,49 +2094,49 @@ ALTER TABLE `orders`
 --
 
 --
--- Constraints for table `addresses`
+-- Constraints for table `Addresses`
 --
-ALTER TABLE `addresses`
-  ADD CONSTRAINT `FK_Addresses_Accounts_AddressId` FOREIGN KEY (`AddressId`) REFERENCES `accounts` (`AccountId`) ON DELETE CASCADE,
-  ADD CONSTRAINT `FK_Addresses_Countries_CountryId` FOREIGN KEY (`CountryId`) REFERENCES `countries` (`CountryId`) ON DELETE CASCADE;
+ALTER TABLE `Addresses`
+  ADD CONSTRAINT `FK_Addresses_Accounts_AddressId` FOREIGN KEY (`AddressId`) REFERENCES `Accounts` (`AccountId`) ON DELETE CASCADE,
+  ADD CONSTRAINT `FK_Addresses_Countries_CountryId` FOREIGN KEY (`CountryId`) REFERENCES `Countries` (`CountryId`) ON DELETE CASCADE;
 
 --
--- Constraints for table `cartitems`
+-- Constraints for table `CartItems`
 --
-ALTER TABLE `cartitems`
-  ADD CONSTRAINT `FK_CartItems_Carts_CartFk` FOREIGN KEY (`CartFk`) REFERENCES `carts` (`CartId`) ON DELETE CASCADE,
-  ADD CONSTRAINT `FK_CartItems_Items_ItemFk` FOREIGN KEY (`ItemFk`) REFERENCES `items` (`ItemId`) ON DELETE CASCADE;
+ALTER TABLE `CartItems`
+  ADD CONSTRAINT `FK_CartItems_Carts_CartFk` FOREIGN KEY (`CartFk`) REFERENCES `Carts` (`CartId`) ON DELETE CASCADE,
+  ADD CONSTRAINT `FK_CartItems_Items_ItemFk` FOREIGN KEY (`ItemFk`) REFERENCES `Items` (`ItemId`) ON DELETE CASCADE;
 
 --
--- Constraints for table `carts`
+-- Constraints for table `Carts`
 --
-ALTER TABLE `carts`
-  ADD CONSTRAINT `FK_Carts_Accounts_CartId` FOREIGN KEY (`CartId`) REFERENCES `accounts` (`AccountId`) ON DELETE CASCADE;
+ALTER TABLE `Carts`
+  ADD CONSTRAINT `FK_Carts_Accounts_CartId` FOREIGN KEY (`CartId`) REFERENCES `Accounts` (`AccountId`) ON DELETE CASCADE;
 
 --
--- Constraints for table `invoices`
+-- Constraints for table `Invoices`
 --
-ALTER TABLE `invoices`
-  ADD CONSTRAINT `FK_Invoices_Orders_OrderId` FOREIGN KEY (`OrderId`) REFERENCES `orders` (`OrderId`) ON DELETE CASCADE;
+ALTER TABLE `Invoices`
+  ADD CONSTRAINT `FK_Invoices_Orders_OrderId` FOREIGN KEY (`OrderId`) REFERENCES `Orders` (`OrderId`) ON DELETE CASCADE;
 
 --
--- Constraints for table `items`
+-- Constraints for table `Items`
 --
-ALTER TABLE `items`
-  ADD CONSTRAINT `FK_Items_Categories_CategoryId` FOREIGN KEY (`CategoryId`) REFERENCES `categories` (`CategoryId`) ON DELETE CASCADE;
+ALTER TABLE `Items`
+  ADD CONSTRAINT `FK_Items_Categories_CategoryId` FOREIGN KEY (`CategoryId`) REFERENCES `Categories` (`CategoryId`) ON DELETE CASCADE;
 
 --
--- Constraints for table `orderitems`
+-- Constraints for table `OrderItems`
 --
-ALTER TABLE `orderitems`
-  ADD CONSTRAINT `FK_OrderItems_Items_ItemFk` FOREIGN KEY (`ItemFk`) REFERENCES `items` (`ItemId`) ON DELETE CASCADE,
-  ADD CONSTRAINT `FK_OrderItems_Orders_OrderFk` FOREIGN KEY (`OrderFk`) REFERENCES `orders` (`OrderId`) ON DELETE CASCADE;
+ALTER TABLE `OrderItems`
+  ADD CONSTRAINT `FK_OrderItems_Items_ItemFk` FOREIGN KEY (`ItemFk`) REFERENCES `Items` (`ItemId`) ON DELETE CASCADE,
+  ADD CONSTRAINT `FK_OrderItems_Orders_OrderFk` FOREIGN KEY (`OrderFk`) REFERENCES `Orders` (`OrderId`) ON DELETE CASCADE;
 
 --
--- Constraints for table `orders`
+-- Constraints for table `Orders`
 --
-ALTER TABLE `orders`
-  ADD CONSTRAINT `FK_Orders_Accounts_AccountId` FOREIGN KEY (`AccountId`) REFERENCES `accounts` (`AccountId`) ON DELETE CASCADE;
+ALTER TABLE `Orders`
+  ADD CONSTRAINT `FK_Orders_Accounts_AccountId` FOREIGN KEY (`AccountId`) REFERENCES `Accounts` (`AccountId`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

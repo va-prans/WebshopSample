@@ -21,7 +21,7 @@ services:
     image: "webshopapi:test-B${BUILD_NUMBER}"
     networks:
       - test_network
-    command: sh -c './wait-for.sh db-test:3306 -- dotnet test --verbosity=normal'
+    command: sh -c './wait-for.sh db-test:3306 -- dotnet test'
     build:
       context: .
       dockerfile: Dockerfile-Integration

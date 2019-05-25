@@ -1946,7 +1946,7 @@ CREATE TABLE `orders` (
 -- Table structure for table `__efmigrationshistory`
 --
 
-CREATE TABLE `__efmigrationshistory` (
+CREATE TABLE `__EFMigrationsHistory` (
   `MigrationId` varchar(150) NOT NULL,
   `ProductVersion` varchar(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -1955,7 +1955,7 @@ CREATE TABLE `__efmigrationshistory` (
 -- Dumping data for table `__efmigrationshistory`
 --
 
-INSERT INTO `__efmigrationshistory` (`MigrationId`, `ProductVersion`) VALUES
+INSERT INTO `__EFMigrationsHistory` (`MigrationId`, `ProductVersion`) VALUES
 ('20190525140043_First', '2.2.4-servicing-10062');
 
 --
@@ -2034,7 +2034,7 @@ ALTER TABLE `orders`
 --
 -- Indexes for table `__efmigrationshistory`
 --
-ALTER TABLE `__efmigrationshistory`
+ALTER TABLE `__EFMigrationsHistory`
   ADD PRIMARY KEY (`MigrationId`);
 
 --

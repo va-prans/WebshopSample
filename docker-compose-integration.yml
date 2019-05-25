@@ -27,3 +27,6 @@ services:
       dockerfile: Dockerfile-Integration
 volumes:
     dbdata-test:
+
+networks:
+  test_network:

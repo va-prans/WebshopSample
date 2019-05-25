@@ -9,4 +9,6 @@ node('docker') {
 		sh "docker-compose -f docker-compose-integration.yml down -v"
 	stage 'Run'
         sh "docker-compose -f docker-compose.yml up --build --force-recreate -d"
+	stage 'Clean'
+	stage 'Verify'
 }

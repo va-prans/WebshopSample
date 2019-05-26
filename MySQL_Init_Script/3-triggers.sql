@@ -1,0 +1,13 @@
+USE webshop;
+
+DELIMITER $$
+
+CREATE TRIGGER pricecheck
+ BEFORE UPDATE
+ ON Items
+ FOR EACH ROW
+ BEGIN
+ IF NEW.Price < 0 THEN SET NEW.Price = 0; END IF;
+ END$$
+
+DELIMITER ;

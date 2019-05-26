@@ -11,6 +11,7 @@ using Webshop.Application.Category.Queries.GetCategories;
 
 namespace WebshopAPI.Controllers
 {
+    [Produces("application/json")]
     [Route("api/cart")]
     [ApiController]
     public class CartController : BaseController

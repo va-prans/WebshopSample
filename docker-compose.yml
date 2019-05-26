@@ -13,7 +13,18 @@ services:
        #- ./MySQL_Init_Script:/docker-entrypoint-initdb.d/
        - dbdata:/var/lib/mysql
      restart: always
- 
+   phpmyadmin:
+     image: phpmyadmin/phpmyadmin
+     environment:
+       PMA_PORT: 3306
+       PMA_HOST: db
+       PMA_USER: root
+       PMA_PASSWORD: secret
+     ports:
+     - "8004:80"
+     restart: always
+     depends_on: 
+     - db
    webshopapi:
      depends_on:
        - db

@@ -168,6 +168,9 @@ CREATE TABLE `Items` (
   `CategoryId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+DELIMITER $$
+
+DELIMITER ;
 --
 -- Dumping data for table `Items`
 --

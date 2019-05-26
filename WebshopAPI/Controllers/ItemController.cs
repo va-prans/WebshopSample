@@ -10,6 +10,7 @@ using Webshop.Application.Item.Queries.GetRecommendedItems;
 
 namespace WebshopAPI.Controllers
 {
+    [Produces("application/json")]
     [Route("api/item")]
     [ApiController]
     public class ItemController : BaseController

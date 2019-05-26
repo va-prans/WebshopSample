@@ -9,6 +9,7 @@ using Webshop.Application.Order.Commands.Pay;
 
 namespace WebshopAPI.Controllers
 {
+    [Produces("application/json")]
     [Route("api/orders")]
     [ApiController]
     public class OrderController : BaseController

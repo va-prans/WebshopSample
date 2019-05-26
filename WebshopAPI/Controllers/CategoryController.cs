@@ -10,6 +10,7 @@ using Webshop.Application.Category.Queries.GetCategoryItems;
 
 namespace WebshopAPI.Controllers
 {
+    [Produces("application/json")]
     [Route("api/categories")]
     [ApiController]
     public class CategoryController : BaseController

@@ -1,0 +1,44 @@
+NEO4J Set up
+
+https://neo4j.com/developer/dotnet/
+
+using Neo4j.Driver.V1;
+
+using (var driver = GraphDatabase.Driver("bolt://localhost", AuthTokens.Basic("Username", "Password")))
+using (var session = driver.Session()) {
+    sesion.Run("CREATE (a:Person {name:'Arthur', title:'King'})");
+    var result = session.Run("MATCH (a:Person) WHERE a.name = 'Arthur' RETURN a.name AS name, a.title AS title");
+
+    foreach (var record in result)
+        Console.WriteLine($"{record["title"].As<string>()} {record["name"].As<string>()}");
+}
+Simply replace the localhost with your server ip (or localhost if you run it locally) and the username and password with your own username and password.
+
+
+
+Create Nodes, Relationships
+
+CREATE (pc:PC {p_name:"PC"}),(mobo:PART {p_name:"Mother Board"}),(case:PART {p_name:"Case"}),(psu:PART {p_name:"Power Suply"}),(cpu:PART {p_name:"Processor"}),(gpu:PART {p_name:"Graphics Card"}),(ram:PART {p_name:"Access Memory"}),(storage:PART {p_name:"Storage Unit"}),(ssd:PART {p_name:"SSD"}),(hdd:PART {p_name:"HDD"}),(cool:PART {p_name:"Cooling"}),(cpucool:PART {p_name:"CPU Cooler"}),(casecool:PART {p_name:"Case Cooler"}),(iod:PART {p_name:"IO Devices"}),(key:PART {p_name:"Keyboard"}),(mouse:PART {p_name:"Mouse"}),(monitor:PART {p_name:"Monitor"}),(hs:PART {p_name:"Head Set"}),(mobo)-[:PART_OF]->(pc),(case)-[:PART_OF]->(pc),(psu)-[:PART_OF]->(case),(cpu)-[:PART_OF]->(pc),(gpu)-[:PART_OF]->(pc),(ram)-[:PART_OF]->(storage),(storage)-[:PART_OF]->(pc),(ssd)-[:PART_OF]->(storage),(hdd)-[:PART_OF]->(storage),(cool)-[:PART_OF]->(pc),(cpucool)-[:PART_OF]->(cool),(casecool)-[:PART_OF]->(cool),(iod)-[:PART_OF]->(pc),(key)-[:PART_OF]->(iod),(mouse)-[:PART_OF]->(iod),(monitor)-[:PART_OF]->(iod),(hs)-[:PART_OF]->(iod)
+
+
+Return parts required for PC building
+(Directly connected to PC node)
+
+MATCH (part:PART) WHERE (part)-[:PART_OF]->(:PC) RETURN part.p_name
+
+
+Return parts directly connected to "ITEM"
+
+MATCH (n:PART {p_name:"Cooling"})-[:PART_OF]-(p) RETURN p.p_name AS Recommended, count(*) AS Strength ORDER BY Strength DESC
+
+
+Recommendation of 1 Layer
+(Change "ITEM" to specify start point)
+
+MATCH (part:PART {p_name:"ITEM"})--(m)--(rparts) RETURN rparts.p_name AS Recommended, count(*) AS Strength ORDER BY Strength DESC
+
+
+Return all
+MATCH (n) RETURN n.p_name
+Delete all
+MATCH (n) DETACH DELTE n

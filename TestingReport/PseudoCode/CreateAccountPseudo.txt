@@ -1,0 +1,9 @@
+Method CreateAccount(var request)
+	name = db.accounts.find(request.name)
+	if name != null throw duplicate name exception
+	entity = db.accounts.add(new account(request.name, request.password))
+	entity.address = new address()
+	entity.cart  = new cart()
+	db.save()
+	return entity
+	

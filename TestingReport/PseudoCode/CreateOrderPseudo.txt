@@ -1,0 +1,21 @@
+Method CreateOrder(var request)
+	var account = db.accounts.find(request.accountId)
+	if account == null throw account not found exception
+	if account.cart.cartItems.count > 1 
+		var transaction = db.beginTransaction
+			try
+				var order = db.orders.add(new order())
+				db.save()
+				for each item in account.cart.cartItems
+					order.orderItems.add(item)
+				db.carItems.remove(account.cart.cartItems)
+				if account.address == null throw no address exception
+				order.shippingCost = account.address.country.shippingCost
+				order.totalCost = account.cart.cartItems.Sum(item.price)
+				order.invoice = new invoice(decimal amount, bool isPaid)
+				db.save()
+				transaction.commit
+				return order
+			catch 
+				transaction.rollback()	
+	else throw no items in cart exception

@@ -8,7 +8,7 @@ Method CreateOrder(var request)
 				db.save()
 				for each item in account.cart.cartItems
 					order.orderItems.add(item)
-				db.carItems.remove(account.cart.cartItems)
+				db.cartItems.remove(account.cart.cartItems)
 				if account.address == null throw no address exception
 				order.shippingCost = account.address.country.shippingCost
 				order.totalCost = account.cart.cartItems.Sum(item.price)

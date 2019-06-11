@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
+using Webshop.Application.Exceptions;
 using Webshop.Application.Interfaces;
 using Webshop.Persistence;
 
@@ -22,9 +25,25 @@ namespace Webshop.Application.Item.Queries.GetRecommendedItems
             _recommendedCategoryService = recommendedCategoryService;
         }
 
-        public Task<List<Domain.Entities.Item>> Handle(GetRecommendedItemsQuery request, CancellationToken cancellationToken)
+        public async Task<List<Domain.Entities.Item>> Handle(GetRecommendedItemsQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var itemCat = _context.Categories.FindAsync(request.CategoryId);
+            if (itemCat == null)
+            {
+                throw new NotFoundException(nameof(Domain.Entities.Category), request.CategoryId);
+            }
+
+            var recommendedCat = await _recommendedCategoryService.GetRecommendedCategories(itemCat.Result.Name);
+            List < Domain.Entities.Item > items = new List<Domain.Entities.Item>();
+            foreach (var cat in recommendedCat)
+            {
+                var cat1 = await _context.Categories.Where(x => x.Name == cat.name).FirstOrDefaultAsync(cancellationToken: cancellationToken);
+                var item = await _context.Items.Where(x => x.CategoryId == cat1.CategoryId)
+                    .FirstOrDefaultAsync(cancellationToken: cancellationToken);
+                items.Add(item);
+            }
+
+            return items;
         }
     }
 }

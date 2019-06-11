@@ -17,6 +17,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Neo4jClient;
 using Newtonsoft.Json;
 using Swashbuckle.AspNetCore.Swagger;
 using Webshop.Application.Account.Commands.Create;
@@ -51,6 +52,12 @@ namespace WebshopAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IRecommendedCategoryService, RecommendedCategoryService>();
+            services.AddSingleton<IGraphClient>(context =>
+            {
+                var client = new GraphClient(new Uri("http://localhost:11008/db/data"), "neo4j", "1234");
+                client.Connect();
+                return client;
+            });
 
             services.AddDbContext<WebshopContext>(options =>
                 options.UseMySQL(

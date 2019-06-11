@@ -1,0 +1,95 @@
+CREATE (a:Component {name: 'Motherboards'})
+CREATE (b:Component {name: 'RAM'})
+CREATE (c:Component {name: 'CPUs'})
+CREATE (d:Component {name: 'GPUs'})
+CREATE (e:Component {name: 'Cases'})
+CREATE (f:Component {name: 'HDDs'})
+CREATE (g:Component {name: 'PSUs'})
+CREATE (h:Component {name: 'Electricity Meters'})
+CREATE (i:Component {name: 'Cooling Paste'})
+CREATE (j:Component {name: 'GPU Coolers'})
+CREATE (k:Component {name: 'CPU Coolers'})
+CREATE (l:Component {name: 'Screens'})
+CREATE (m:Component {name: 'Games'})
+CREATE (n:Component {name: 'Fans'})
+CREATE (o:Component {name: 'Mice'})
+CREATE (p:Component {name: 'Mouse Mats'})
+CREATE (q:Component {name: 'USB Sticks'})
+CREATE (r:Component {name: 'Keyboards'})
+CREATE (s:Component {name: 'De-Dusters'})
+
+MATCH (a:Component {name: 'Motherboards'})
+MATCH (b:Component {name: 'RAM'})
+MATCH (c:Component {name: 'CPUs'})
+MATCH (d:Component {name: 'GPUs'})
+MATCH (e:Component {name: 'Cases'})
+MATCH (f:Component {name: 'HDDs'})
+MATCH (g:Component {name: 'PSUs'})
+MATCH (h:Component {name: 'Electricity Meters'})
+MATCH (i:Component {name: 'Cooling Paste'})
+MATCH (j:Component {name: 'GPU Coolers'})
+MATCH (k:Component {name: 'CPU Coolers'})
+MATCH (l:Component {name: 'Screens'})
+MATCH (m:Component {name: 'Games'})
+MATCH (n:Component {name: 'Fans'})
+MATCH (o:Component {name: 'Mice'})
+MATCH (p:Component {name: 'Mouse Mats'})
+MATCH (q:Component {name: 'USB Sticks'})
+MATCH (r:Component {name: 'Keyboards'})
+MATCH (s:Component {name: 'De-Dusters'})
+MERGE (b)-[r1:CONNECTS_TO]->(a)
+MERGE (c)-[r2:CONNECTS_TO]->(a)
+MERGE (d)-[r3:CONNECTS_TO]->(a)
+MERGE (e)-[r4:CONNECTS_TO]->(a)
+MERGE (f)-[r5:CONNECTS_TO]->(a)
+MERGE (g)-[r6:CONNECTS_TO]->(a)
+MERGE (k)-[r7:CONNECTS_TO]->(c)
+MERGE (i)-[r8:CONNECTS_TO]->(c)
+MERGE (j)-[r9:CONNECTS_TO]->(d)
+MERGE (l)-[r10:CONNECTS_TO]->(d)
+MERGE (m)-[r11:CONNECTS_TO]->(d)
+MERGE (s)-[r12:CONNECTS_TO]->(e)
+MERGE (r)-[r13:CONNECTS_TO]->(e)
+MERGE (q)-[r14:CONNECTS_TO]->(e)
+MERGE (o)-[r15:CONNECTS_TO]->(e)
+MERGE (n)-[r16:CONNECTS_TO]->(e)
+MERGE (p)-[r17:CONNECTS_TO]->(o)
+MERGE (h)-[r18:CONNECTS_TO]->(g)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

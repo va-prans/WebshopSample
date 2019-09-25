@@ -7,12 +7,12 @@ This is a simple "PC component webshop" written in c# that was made for a Databa
 - Uses Docker for deployment.
 - Uses Jenkins for Continous Integration.
 
-#How to run? 
+# How to run? 
 
 - Install docker.
 - Run "docker-compose -f docker-compose-ci.yml up --build --force-recreate".
 
-#What happens when you run the above command?
+# What happens when you run the above command?
 
 - A Jenkins docker container is started up.
 - Jenkins pulls from source.

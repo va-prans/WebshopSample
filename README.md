@@ -3,7 +3,7 @@
 This is a simple "PC component webshop" written in c# that was made for a Database & Testing exam. 
 - Coheres to the principles of clean architecture with dependencies flowing inwards toward the Domain layer and adheres to command & query   responsibility segregation principles with the use of MediatR. 
 - Uses MySQL to store all the data about users, items & orders.
-- Uses Neo4j to provide a reccomendation algorithm to a single degree, so if you're looking at Motherboards it will reccomend items         related to Motherboards such as CPUS & GPUs.
+- Uses Neo4j to provide a recommendation algorithm to a single degree, so if you're looking at Motherboards it will recommend items         related to Motherboards such as CPUS & GPUs.
 - Uses Docker for deployment.
 - Uses Jenkins for Continous Integration.
 

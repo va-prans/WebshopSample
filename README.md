@@ -17,6 +17,6 @@ This is a simple "PC component webshop" written in c# that was made for a Databa
 - A Jenkins docker container is started up.
 - Jenkins pulls from source.
 - Jenkins builds & runs unit tests.
-- Jenkins run creates a container for integration tests & deletes it.
+- Jenkins creates a container for integration tests & deletes it.
 - Jenkins builds and runs the application. 
 - A swagger generated endpoint documentation page is now available at localhost:8085.
